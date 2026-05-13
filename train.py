@@ -1,154 +1,126 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-Training script for the paper-inspired U-Net.
-
-Expected data format:
-- X_train.pt: tensor with shape [N, 80, H, W]
-- Y_train.pt: tensor with shape [N, 13, H, W]
-- X_val.pt:   tensor with shape [N, 80, H, W]
-- Y_val.pt:   tensor with shape [N, 13, H, W]
-
-Example:
-    python train.py
+Train U-Net directly from day-based .npz patch shards.
 """
 
+from __future__ import annotations
+
+import argparse
 from pathlib import Path
+import random
+
+import numpy as np
 import torch
-from torch.utils.data import Dataset, DataLoader
 import torch.nn as nn
 import torch.optim as optim
 
-from unet import UNetPaperLike, count_parameters
+from dataset import GMIPatchDataset, make_dataloader
+from unet import UNet, count_parameters
 
 
-# -----------------------------
-# 1. Dataset
-# -----------------------------
+def seed_everything(seed: int = 42) -> None:
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
 
-class TensorDataset2D(Dataset):
-    def __init__(self, x_path: str, y_path: str):
-        self.x = torch.load(x_path).float()
-        self.y = torch.load(y_path).float()
-
-        if self.x.ndim != 4:
-            raise ValueError(f"X must have shape [N, C, H, W], got {self.x.shape}")
-
-        if self.y.ndim != 4:
-            raise ValueError(f"Y must have shape [N, C, H, W], got {self.y.shape}")
-
-        if self.x.shape[0] != self.y.shape[0]:
-            raise ValueError("X and Y must have the same number of samples")
-
-    def __len__(self):
-        return self.x.shape[0]
-
-    def __getitem__(self, idx):
-        return self.x[idx], self.y[idx]
-
-
-# -----------------------------
-# 2. Train one epoch
-# -----------------------------
 
 def train_one_epoch(model, dataloader, optimizer, loss_fn, device):
     model.train()
-
     total_loss = 0.0
 
     for x, y in dataloader:
-        x = x.to(device)
-        y = y.to(device)
+        x = x.to(device, non_blocking=True)
+        y = y.to(device, non_blocking=True)
 
-        # Forward pass
-        pred = model(x)
-
-        # Compute loss
-        loss = loss_fn(pred, y)
-
-        # Backpropagation
         optimizer.zero_grad()
+        pred = model(x)
+        loss = loss_fn(pred, y)
         loss.backward()
-
-        # Gradient descent step
         optimizer.step()
 
         total_loss += loss.item() * x.size(0)
 
-    avg_loss = total_loss / len(dataloader.dataset)
-    return avg_loss
+    return total_loss / len(dataloader.dataset)
 
-
-# -----------------------------
-# 3. Validate
-# -----------------------------
 
 @torch.no_grad()
 def validate(model, dataloader, loss_fn, device):
     model.eval()
-
     total_loss = 0.0
 
     for x, y in dataloader:
-        x = x.to(device)
-        y = y.to(device)
+        x = x.to(device, non_blocking=True)
+        y = y.to(device, non_blocking=True)
 
         pred = model(x)
         loss = loss_fn(pred, y)
-
         total_loss += loss.item() * x.size(0)
 
-    avg_loss = total_loss / len(dataloader.dataset)
-    return avg_loss
+    return total_loss / len(dataloader.dataset)
 
 
-# -----------------------------
-# 4. Main training function
-# -----------------------------
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(description="Train paper-inspired U-Net from GMI .npz patch shards")
+    p.add_argument("--data-root", type=Path,
+                   default=Path("/lustre/home/mariyam/GMI_1C-R/patches_split_byday_cnnprep"))
+    p.add_argument("--save-dir", type=Path, default=Path("checkpoints"))
+    p.add_argument("--use-static", action="store_true",
+                   help="Use X_static together with X_gmi")
+    p.add_argument("--fill-target-nan", type=float, default=0.0)
+    p.add_argument("--batch-size", type=int, default=16)
+    p.add_argument("--epochs", type=int, default=100)
+    p.add_argument("--lr", type=float, default=1e-3)
+    p.add_argument("--num-workers", type=int, default=0)
+    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--early-stop-patience", type=int, default=12)
+    return p
+
 
 def main():
-    # Paths
-    data_dir = Path("data")
-
-    x_train_path = data_dir / "X_train.pt"
-    y_train_path = data_dir / "Y_train.pt"
-    x_val_path = data_dir / "X_val.pt"
-    y_val_path = data_dir / "Y_val.pt"
-
-    # Training settings
-    batch_size = 16
-    num_epochs = 100
-    learning_rate = 1e-3
-
-    in_channels = 80
-    out_channels = 13
+    args = build_parser().parse_args()
+    seed_everything(args.seed)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    # Datasets and loaders
-    train_dataset = TensorDataset2D(x_train_path, y_train_path)
-    val_dataset = TensorDataset2D(x_val_path, y_val_path)
+    train_ds = GMIPatchDataset(
+        root=args.data_root,
+        split="train",
+        use_static=args.use_static,
+        fill_target_nan=args.fill_target_nan,
+        return_metadata=False,
+    )
+    val_ds = GMIPatchDataset(
+        root=args.data_root,
+        split="val",
+        use_static=args.use_static,
+        fill_target_nan=args.fill_target_nan,
+        return_metadata=False,
+    )
 
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=batch_size,
+    train_loader = make_dataloader(
+        train_ds,
+        batch_size=args.batch_size,
         shuffle=True,
-        num_workers=0,
-        pin_memory=True if device.type == "cuda" else False,
+        num_workers=args.num_workers,
+        pin_memory=(device.type == "cuda"),
+        drop_last=False,
     )
-
-    val_loader = DataLoader(
-        val_dataset,
-        batch_size=batch_size,
+    val_loader = make_dataloader(
+        val_ds,
+        batch_size=args.batch_size,
         shuffle=False,
-        num_workers=0,
-        pin_memory=True if device.type == "cuda" else False,
+        num_workers=args.num_workers,
+        pin_memory=(device.type == "cuda"),
+        drop_last=False,
     )
 
-    # Model
-    model = UNetPaperLike(
+    in_channels = train_ds.gmi_channels + (train_ds.static_channels if args.use_static else 0)
+    out_channels = train_ds.target_channels
+
+    model = UNet(
         in_channels=in_channels,
         out_channels=out_channels,
         base_filters=(8, 16, 32, 64),
@@ -156,17 +128,15 @@ def main():
         final_activation="identity",
     ).to(device)
 
-    print(f"Trainable parameters: {count_parameters(model):,}")
+    print(f"Train patches: {len(train_ds):,}")
+    print(f"Val patches  : {len(val_ds):,}")
+    print(f"In channels  : {in_channels}")
+    print(f"Out channels : {out_channels}")
+    print(f"Patch size   : {train_ds.patch_size}")
+    print(f"Parameters   : {count_parameters(model):,}")
 
-    # Loss function
-    # For reconstruction / gap-filling, MSE is common.
     loss_fn = nn.MSELoss()
-
-    # Optimizer
-    # Adam is gradient descent with adaptive learning rates.
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-
-    # Optional learning rate scheduler
+    optimizer = optim.Adam(model.parameters(), lr=args.lr)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
         optimizer,
         mode="min",
@@ -174,55 +144,65 @@ def main():
         patience=8,
     )
 
-    # Save directory
-    save_dir = Path("checkpoints")
-    save_dir.mkdir(exist_ok=True)
+    args.save_dir.mkdir(parents=True, exist_ok=True)
 
     best_val_loss = float("inf")
+    best_epoch = 0
+    epochs_without_improvement = 0
 
-    # Training loop
-    for epoch in range(1, num_epochs + 1):
-        train_loss = train_one_epoch(
-            model=model,
-            dataloader=train_loader,
-            optimizer=optimizer,
-            loss_fn=loss_fn,
-            device=device,
-        )
-
-        val_loss = validate(
-            model=model,
-            dataloader=val_loader,
-            loss_fn=loss_fn,
-            device=device,
-        )
+    for epoch in range(1, args.epochs + 1):
+        train_loss = train_one_epoch(model, train_loader, optimizer, loss_fn, device)
+        val_loss = validate(model, val_loader, loss_fn, device)
 
         scheduler.step(val_loss)
 
         print(
-            f"Epoch [{epoch:03d}/{num_epochs}] "
+            f"Epoch [{epoch:03d}/{args.epochs}] "
             f"Train Loss: {train_loss:.6f} "
-            f"Val Loss: {val_loss:.6f}"
+            f"Val Loss: {val_loss:.6f} "
+            f"LR: {optimizer.param_groups[0]['lr']:.2e}"
         )
 
-        # Save best model
+        latest_ckpt = {
+            "epoch": epoch,
+            "model_state_dict": model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "train_loss": train_loss,
+            "val_loss": val_loss,
+            "best_val_loss": best_val_loss,
+            "in_channels": in_channels,
+            "out_channels": out_channels,
+            "use_static": args.use_static,
+            "base_filters": (8, 16, 32, 64),
+        }
+        torch.save(latest_ckpt, args.save_dir / "latest_unet.pt")
+
         if val_loss < best_val_loss:
             best_val_loss = val_loss
+            best_epoch = epoch
+            epochs_without_improvement = 0
 
-            checkpoint = {
+            best_ckpt = {
                 "epoch": epoch,
                 "model_state_dict": model.state_dict(),
                 "optimizer_state_dict": optimizer.state_dict(),
                 "best_val_loss": best_val_loss,
                 "in_channels": in_channels,
                 "out_channels": out_channels,
+                "use_static": args.use_static,
                 "base_filters": (8, 16, 32, 64),
             }
+            torch.save(best_ckpt, args.save_dir / "best_unet.pt")
+            print(f"  Saved new best model at epoch {epoch} (val={best_val_loss:.6f})")
+        else:
+            epochs_without_improvement += 1
 
-            torch.save(checkpoint, save_dir / "best_unet.pt")
-            print(f"Saved best model with val loss: {best_val_loss:.6f}")
+        if epochs_without_improvement >= args.early_stop_patience:
+            print(f"Early stopping at epoch {epoch}. Best epoch was {best_epoch}.")
+            break
 
     print("Training complete.")
+    print(f"Best validation loss: {best_val_loss:.6f} at epoch {best_epoch}")
 
 
 if __name__ == "__main__":
