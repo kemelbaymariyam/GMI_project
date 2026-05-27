@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Train U-Net directly from day-based .npz patch shards.
+Train U-Net from day-based .npz patch shards using subset manifest files.
 """
 
 from __future__ import annotations
@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 import random
+
 from tqdm import tqdm
 import numpy as np
 import torch
@@ -31,7 +32,6 @@ def train_one_epoch(model, dataloader, optimizer, loss_fn, device, epoch):
     total_loss = 0.0
 
     pbar = tqdm(dataloader, desc=f"Train Epoch {epoch}", leave=False)
-
     for x, y in pbar:
         x = x.to(device, non_blocking=True)
         y = y.to(device, non_blocking=True)
@@ -47,14 +47,13 @@ def train_one_epoch(model, dataloader, optimizer, loss_fn, device, epoch):
 
     return total_loss / len(dataloader.dataset)
 
-@torch.no_grad()
+
 @torch.no_grad()
 def validate(model, dataloader, loss_fn, device, epoch):
     model.eval()
     total_loss = 0.0
 
     pbar = tqdm(dataloader, desc=f"Val Epoch {epoch}", leave=False)
-
     for x, y in pbar:
         x = x.to(device, non_blocking=True)
         y = y.to(device, non_blocking=True)
@@ -62,31 +61,26 @@ def validate(model, dataloader, loss_fn, device, epoch):
         pred = model(x)
         loss = loss_fn(pred, y)
         total_loss += loss.item() * x.size(0)
-
         pbar.set_postfix(loss=f"{loss.item():.6f}")
 
     return total_loss / len(dataloader.dataset)
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="Train paper-inspired U-Net from GMI .npz patch shards")
+    p = argparse.ArgumentParser(description="Train paper-inspired U-Net using subset manifests")
     p.add_argument("--data-root", type=Path,
                    default=Path("/lustre/home/mariyam/GMI_1C-R/patches_split_byday_cnnprep"))
+    p.add_argument("--train-manifest", type=Path, required=True)
+    p.add_argument("--val-manifest", type=Path, required=True)
     p.add_argument("--save-dir", type=Path, default=Path("checkpoints"))
     p.add_argument("--use-static", action="store_true",
                    help="Use X_static together with X_gmi")
     p.add_argument("--fill-target-nan", type=float, default=0.0)
-    p.add_argument("--max-train-samples", type=int, default=None)
-    p.add_argument("--max-val-samples", type=int, default=None)
     p.add_argument("--batch-size", type=int, default=16)
     p.add_argument("--epochs", type=int, default=100)
     p.add_argument("--lr", type=float, default=1e-3)
-    p.add_argument("--num-workers", type=int, default=0)
+    p.add_argument("--num-workers", type=int, default=2)
     p.add_argument("--seed", type=int, default=42)
-    p.add_argument("--resume", type=Path, default=None,
-               help="Path to checkpoint to continue training from")
-    p.add_argument("--resume-optimizer", action="store_true",
-                help="Also resume optimizer state")
     p.add_argument("--early-stop-patience", type=int, default=12)
     return p
 
@@ -97,6 +91,8 @@ def main():
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
+    print(f"Train manifest: {args.train_manifest}")
+    print(f"Val manifest  : {args.val_manifest}")
 
     print("Loading training dataset ...")
     train_ds = GMIPatchDataset(
@@ -105,7 +101,7 @@ def main():
         use_static=args.use_static,
         fill_target_nan=args.fill_target_nan,
         return_metadata=False,
-        max_samples=args.max_train_samples,
+        manifest_path=args.train_manifest,
     )
 
     print("Loading validation dataset ...")
@@ -115,14 +111,14 @@ def main():
         use_static=args.use_static,
         fill_target_nan=args.fill_target_nan,
         return_metadata=False,
-        max_samples=args.max_val_samples,
+        manifest_path=args.val_manifest,
     )
 
     print("Building dataloaders ...")
     train_loader = make_dataloader(
         train_ds,
         batch_size=args.batch_size,
-        shuffle=False,
+        shuffle=True,
         num_workers=args.num_workers,
         pin_memory=(device.type == "cuda"),
         drop_last=False,
@@ -138,6 +134,7 @@ def main():
 
     in_channels = train_ds.gmi_channels + (train_ds.static_channels if args.use_static else 0)
     out_channels = train_ds.target_channels
+
     print("Building model ...")
     model = UNet(
         in_channels=in_channels,
@@ -153,6 +150,7 @@ def main():
     print(f"Out channels : {out_channels}")
     print(f"Patch size   : {train_ds.patch_size}")
     print(f"Parameters   : {count_parameters(model):,}")
+    print(f"Model device : {next(model.parameters()).device}")
 
     loss_fn = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
@@ -162,53 +160,17 @@ def main():
         factor=0.5,
         patience=8,
     )
-    start_epoch = 1
-    best_val_loss = float("inf")
-    best_epoch = 0
-
-    if args.resume is not None:
-        print(f"Loading checkpoint from: {args.resume}")
-        ckpt = torch.load(args.resume, map_location=device)
-
-        if ckpt.get("use_static") != args.use_static:
-            raise ValueError(
-                f"Checkpoint use_static={ckpt.get('use_static')} but current use_static={args.use_static}. "
-                "You cannot resume if static-channel setting changed."
-            )
-
-        if ckpt.get("in_channels") != in_channels:
-            raise ValueError(
-                f"Checkpoint in_channels={ckpt.get('in_channels')} but current in_channels={in_channels}."
-            )
-
-        if ckpt.get("out_channels") != out_channels:
-            raise ValueError(
-                f"Checkpoint out_channels={ckpt.get('out_channels')} but current out_channels={out_channels}."
-            )
-
-        model.load_state_dict(ckpt["model_state_dict"])
-
-        if args.resume_optimizer and "optimizer_state_dict" in ckpt:
-            optimizer.load_state_dict(ckpt["optimizer_state_dict"])
-            print("Optimizer state resumed.")
-        else:
-            print("Model weights resumed. Optimizer restarted.")
-
-        start_epoch = int(ckpt["epoch"]) + 1
-        best_val_loss = float(ckpt.get("best_val_loss", float("inf")))
-        best_epoch = int(ckpt.get("epoch", 0))
-
-        print(f"Continuing from epoch {start_epoch}")
 
     args.save_dir.mkdir(parents=True, exist_ok=True)
 
-    #best_val_loss = float("inf")
-    #best_epoch = 0
+    best_val_loss = float("inf")
+    best_epoch = 0
     epochs_without_improvement = 0
 
-    for epoch in range(start_epoch, args.epochs + 1):
+    for epoch in range(1, args.epochs + 1):
         print(f"\nStarting epoch {epoch} ...")
         train_loss = train_one_epoch(model, train_loader, optimizer, loss_fn, device, epoch)
+
         print("Validation starting ...")
         val_loss = validate(model, val_loader, loss_fn, device, epoch)
 
@@ -232,6 +194,8 @@ def main():
             "out_channels": out_channels,
             "use_static": args.use_static,
             "base_filters": (8, 16, 32, 64),
+            "train_manifest": str(args.train_manifest),
+            "val_manifest": str(args.val_manifest),
         }
         torch.save(latest_ckpt, args.save_dir / "latest_unet.pt")
 
@@ -249,6 +213,8 @@ def main():
                 "out_channels": out_channels,
                 "use_static": args.use_static,
                 "base_filters": (8, 16, 32, 64),
+                "train_manifest": str(args.train_manifest),
+                "val_manifest": str(args.val_manifest),
             }
             torch.save(best_ckpt, args.save_dir / "best_unet.pt")
             print(f"  Saved new best model at epoch {epoch} (val={best_val_loss:.6f})")

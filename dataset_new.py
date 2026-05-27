@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# with .npz and  randomness but ordered, seed, 
 """
 PyTorch dataset for GMI patch shards saved as compressed .npz files.
 """
@@ -66,6 +67,9 @@ class GMIPatchDataset(Dataset):
         return_metadata: bool = False,
         manifest_path: Optional[str | Path] = None,
         max_samples: Optional[int] = None,
+        subset_seed: int = 42,
+        random_subset: bool = True,
+        subset_id: int = 0,
     ) -> None:
         super().__init__()
         self.root = Path(root)
@@ -74,9 +78,11 @@ class GMIPatchDataset(Dataset):
         self.fill_target_nan = fill_target_nan
         self.return_metadata = return_metadata
         self.max_samples = max_samples
+        self.subset_seed = subset_seed
+        self.random_subset = random_subset
+        self.subset_id = subset_id
         self.manifest_path = Path(manifest_path) if manifest_path is not None else None
         rows = _read_manifest(self.root, self.split, self.manifest_path)
-
         self.files: List[Path] = []
         self.file_patch_counts: List[int] = []
         self.file_target_days: List[str] = []
@@ -93,9 +99,43 @@ class GMIPatchDataset(Dataset):
         for file_id, n in enumerate(self.file_patch_counts):
             self.index.extend((file_id, patch_id) for patch_id in range(n))
         if self.max_samples is not None:
-            rng = random.Random(42)
-            rng.shuffle(self.index)
-            self.index = self.index[:self.max_samples]
+            n_keep = min(self.max_samples, len(self.index))
+
+            if self.random_subset:
+                rng = random.Random(self.subset_seed)
+
+                shuffled = list(self.index)
+                rng.shuffle(shuffled)
+
+                start = self.subset_id * n_keep
+                end = start + n_keep
+
+                selected = shuffled[start:end]
+
+                if len(selected) < n_keep:
+                    raise ValueError(
+                        f"subset_id={self.subset_id} is too large. "
+                        f"Requested {n_keep} samples, but only {len(selected)} available. "
+                        f"Total samples: {len(self.index)}"
+                    )
+
+                selected.sort()  # keeps .npz reading fast
+                self.index = selected
+
+            else:
+                start = self.subset_id * n_keep
+                end = start + n_keep
+
+                selected = self.index[start:end]
+
+                if len(selected) < n_keep:
+                    raise ValueError(
+                        f"subset_id={self.subset_id} is too large. "
+                        f"Requested {n_keep} samples, but only {len(selected)} available. "
+                        f"Total samples: {len(self.index)}"
+                    )
+
+                self.index = selected
 
         self._cache_file_id: Optional[int] = None
         self._cache_data: Optional[Dict[str, np.ndarray]] = None

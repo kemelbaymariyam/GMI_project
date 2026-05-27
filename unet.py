@@ -82,7 +82,7 @@ class UpBlock(nn.Module):
         return self.conv(x)
 
 
-class UNetPaperLike(nn.Module):
+class UNet(nn.Module):
     """
     Paper-inspired U-Net:
       encoder filters: 8, 16, 32, 64
@@ -164,7 +164,7 @@ def count_parameters(model: nn.Module) -> int:
 
 if __name__ == "__main__":
     cfg = UNetConfig(in_channels=80, out_channels=13)
-    model = UNetPaperLike(
+    model = UNet(
         in_channels=cfg.in_channels,
         out_channels=cfg.out_channels,
         base_filters=cfg.base_filters,
