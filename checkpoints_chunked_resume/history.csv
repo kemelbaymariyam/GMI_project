@@ -1,0 +1,4 @@
+epoch,train_subset_id,train_loss,val_loss,lr,best_val_loss_so_far,is_best,resume_path
+7,1,131.11032239757114,267.0341420214844,0.001,113.06161658691406,0,/lustre/home/mariyam/GMI_project/checkpoints_first360k_chunk0/best_unet.pt
+7,1,96.10675531247458,206.7442789099121,0.001,113.06161658691406,0,/lustre/home/mariyam/GMI_project/checkpoints_first360k_chunk0/best_unet.pt
+8,2,91.11578600349426,127.60708059082032,0.001,113.06161658691406,0,/lustre/home/mariyam/GMI_project/checkpoints_first360k_chunk0/best_unet.pt
