@@ -1,0 +1,73 @@
+================================================================================
+Started: 2026-06-15T23:19:30
+Args: {'train_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5'), 'val_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5'), 'save_dir': PosixPath('checkpoints_fastseq_bs64_val2'), 'use_static': False, 'fill_target_nan': '0.0', 'loss': 'mse', 'batch_size': 64, 'val_batch_size': 128, 'epochs': 30, 'val_every': 2, 'max_train_batches': None, 'max_val_batches': None, 'lr': 0.001, 'weight_decay': 0.0, 'seed': 42, 'base_filters': [8, 16, 32, 64], 'use_batchnorm': False, 'final_activation': 'identity', 'amp': True, 'grad_clip': None, 'resume': None, 'save_every_epoch': False, 'early_stop_patience': 20, 'scheduler_patience': 6, 'scheduler_factor': 0.5, 'min_lr': 1e-06, 'log_every': 100}
+================================================================================
+Device: cuda
+GPU: NVIDIA Graphics Device
+
+Train H5 info:
+  path: /lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5
+  n: 360000
+  x_gmi_shape: (360000, 78, 40, 40)
+  y_shape: (360000, 13, 40, 40)
+  has_static: False
+  x_static_shape: None
+  x_gmi_chunks: (128, 10, 5, 5)
+  y_chunks: (128, 2, 5, 10)
+  compression_x_gmi: lzf
+  compression_y: lzf
+  attrs: {'lat_max': '70.0', 'lat_min': '-70.0', 'max_permanent_invalid_fraction': '0.3', 'min_target_valid_fraction': '0.7', 'num_patches_actual': '360000', 'num_patches_target': '360000', 'patch_size': '40', 'seed': '42', 'stride': '20', 'use_static': 'False'}
+
+Val H5 info:
+  path: /lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5
+  n: 50000
+  x_gmi_shape: (50000, 78, 40, 40)
+  y_shape: (50000, 13, 40, 40)
+  has_static: False
+  x_static_shape: None
+  x_gmi_chunks: (128, 10, 5, 5)
+  y_chunks: (128, 2, 5, 10)
+  compression_x_gmi: lzf
+  compression_y: lzf
+  attrs: {'min_valid_fraction': '0.7', 'num_patches_actual': '50000', 'num_patches_target': '50000', 'patch_size': '40', 'sampling': 'balanced random stride-aligned sampling from original validation days', 'seed': '999', 'stride': '20', 'use_static': 'False'}
+
+Model:
+  in_channels: 78
+  out_channels: 13
+  parameters: 491,325
+  train batches/epoch: 5,625
+  val batches: 391
+  train batch size: 64
+  val batch size: 128
+AMP: True
+Loss: mse
+
+--------------------------------------------------------------------------------
+Starting epoch 1/30 at 2026-06-15T23:19:41
+[epoch 001 step 000100/005625] batch_loss=5446.380371 running_train_loss=30165.652451
+[epoch 001 step 000200/005625] batch_loss=1120.308350 running_train_loss=15986.820362
+[epoch 001 step 000300/005625] batch_loss=997.296570 running_train_loss=11030.881111
+[epoch 001 step 000400/005625] batch_loss=921.214783 running_train_loss=8536.476376
+[epoch 001 step 000500/005625] batch_loss=801.730591 running_train_loss=7018.046859
+[epoch 001 step 000600/005625] batch_loss=271.847076 running_train_loss=5924.050831
+[epoch 001 step 000700/005625] batch_loss=209.077744 running_train_loss=5113.008211
+[epoch 001 step 000800/005625] batch_loss=226.221588 running_train_loss=4503.206475
+[epoch 001 step 000900/005625] batch_loss=213.517212 running_train_loss=4027.994268
+[epoch 001 step 001000/005625] batch_loss=201.634323 running_train_loss=3647.709630
+[epoch 001 step 001100/005625] batch_loss=203.817398 running_train_loss=3336.328912
+[epoch 001 step 001200/005625] batch_loss=207.059036 running_train_loss=3076.687069
+[epoch 001 step 001300/005625] batch_loss=237.766129 running_train_loss=2857.151084
+[epoch 001 step 001400/005625] batch_loss=261.802704 running_train_loss=2668.875217
+[epoch 001 step 001500/005625] batch_loss=238.906281 running_train_loss=2505.310882
+[epoch 001 step 001600/005625] batch_loss=198.978317 running_train_loss=2362.247232
+[epoch 001 step 001700/005625] batch_loss=211.791397 running_train_loss=2235.684028
+[epoch 001 step 001800/005625] batch_loss=196.771317 running_train_loss=2122.866961
+[epoch 001 step 001900/005625] batch_loss=230.308228 running_train_loss=2022.226724
+[epoch 001 step 002000/005625] batch_loss=180.917679 running_train_loss=1931.480410
+[epoch 001 step 002100/005625] batch_loss=247.846436 running_train_loss=1849.346635
+[epoch 001 step 002200/005625] batch_loss=179.178482 running_train_loss=1774.606244
+[epoch 001 step 002300/005625] batch_loss=198.525146 running_train_loss=1706.450537
+[epoch 001 step 002400/005625] batch_loss=166.904037 running_train_loss=1643.953744
+[epoch 001 step 002500/005625] batch_loss=235.617981 running_train_loss=1586.344461
+[epoch 001 step 002600/005625] batch_loss=202.828079 running_train_loss=1533.123955
+[epoch 001 step 002700/005625] batch_loss=199.502518 running_train_loss=1483.922608

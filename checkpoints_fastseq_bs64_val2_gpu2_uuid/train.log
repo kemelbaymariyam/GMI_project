@@ -1,0 +1,1883 @@
+================================================================================
+Started: 2026-06-15T23:58:06
+Args: {'train_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5'), 'val_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5'), 'save_dir': PosixPath('checkpoints_fastseq_bs64_val2_gpu2_uuid'), 'use_static': False, 'fill_target_nan': '0.0', 'loss': 'mse', 'batch_size': 64, 'val_batch_size': 128, 'epochs': 30, 'val_every': 2, 'max_train_batches': None, 'max_val_batches': None, 'lr': 0.001, 'weight_decay': 0.0, 'seed': 42, 'base_filters': [8, 16, 32, 64], 'use_batchnorm': False, 'final_activation': 'identity', 'amp': True, 'grad_clip': None, 'resume': None, 'save_every_epoch': False, 'early_stop_patience': 20, 'scheduler_patience': 6, 'scheduler_factor': 0.5, 'min_lr': 1e-06, 'log_every': 100}
+================================================================================
+Device: cuda
+GPU: NVIDIA L40S
+
+Train H5 info:
+  path: /lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5
+  n: 360000
+  x_gmi_shape: (360000, 78, 40, 40)
+  y_shape: (360000, 13, 40, 40)
+  has_static: False
+  x_static_shape: None
+  x_gmi_chunks: (128, 10, 5, 5)
+  y_chunks: (128, 2, 5, 10)
+  compression_x_gmi: lzf
+  compression_y: lzf
+  attrs: {'lat_max': '70.0', 'lat_min': '-70.0', 'max_permanent_invalid_fraction': '0.3', 'min_target_valid_fraction': '0.7', 'num_patches_actual': '360000', 'num_patches_target': '360000', 'patch_size': '40', 'seed': '42', 'stride': '20', 'use_static': 'False'}
+
+Val H5 info:
+  path: /lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5
+  n: 50000
+  x_gmi_shape: (50000, 78, 40, 40)
+  y_shape: (50000, 13, 40, 40)
+  has_static: False
+  x_static_shape: None
+  x_gmi_chunks: (128, 10, 5, 5)
+  y_chunks: (128, 2, 5, 10)
+  compression_x_gmi: lzf
+  compression_y: lzf
+  attrs: {'min_valid_fraction': '0.7', 'num_patches_actual': '50000', 'num_patches_target': '50000', 'patch_size': '40', 'sampling': 'balanced random stride-aligned sampling from original validation days', 'seed': '999', 'stride': '20', 'use_static': 'False'}
+
+Model:
+  in_channels: 78
+  out_channels: 13
+  parameters: 491,325
+  train batches/epoch: 5,625
+  val batches: 391
+  train batch size: 64
+  val batch size: 128
+AMP: True
+Loss: mse
+
+--------------------------------------------------------------------------------
+Starting epoch 1/30 at 2026-06-15T23:58:38
+[epoch 001 step 000100/005625] batch_loss=5447.377930 running_train_loss=30165.844707
+[epoch 001 step 000200/005625] batch_loss=1110.145386 running_train_loss=15987.117104
+[epoch 001 step 000300/005625] batch_loss=996.990173 running_train_loss=11028.537130
+[epoch 001 step 000400/005625] batch_loss=907.925415 running_train_loss=8526.808731
+[epoch 001 step 000500/005625] batch_loss=635.457520 running_train_loss=6994.166052
+[epoch 001 step 000600/005625] batch_loss=262.595947 running_train_loss=5894.411627
+[epoch 001 step 000700/005625] batch_loss=213.785248 running_train_loss=5088.119720
+[epoch 001 step 000800/005625] batch_loss=230.710434 running_train_loss=4481.602357
+[epoch 001 step 000900/005625] batch_loss=217.319305 running_train_loss=4008.922284
+[epoch 001 step 001000/005625] batch_loss=203.371994 running_train_loss=3630.683764
+[epoch 001 step 001100/005625] batch_loss=205.587952 running_train_loss=3320.966720
+[epoch 001 step 001200/005625] batch_loss=208.605728 running_train_loss=3062.759452
+[epoch 001 step 001300/005625] batch_loss=238.991592 running_train_loss=2844.356125
+[epoch 001 step 001400/005625] batch_loss=263.584290 running_train_loss=2657.042971
+[epoch 001 step 001500/005625] batch_loss=242.078720 running_train_loss=2494.351853
+[epoch 001 step 001600/005625] batch_loss=200.509735 running_train_loss=2352.031779
+[epoch 001 step 001700/005625] batch_loss=214.512741 running_train_loss=2226.167940
+[epoch 001 step 001800/005625] batch_loss=197.106049 running_train_loss=2113.975592
+[epoch 001 step 001900/005625] batch_loss=232.229660 running_train_loss=2013.877780
+[epoch 001 step 002000/005625] batch_loss=183.016525 running_train_loss=1923.623251
+[epoch 001 step 002100/005625] batch_loss=253.839478 running_train_loss=1841.935972
+[epoch 001 step 002200/005625] batch_loss=179.595169 running_train_loss=1767.617573
+[epoch 001 step 002300/005625] batch_loss=199.977005 running_train_loss=1699.892772
+[epoch 001 step 002400/005625] batch_loss=168.150024 running_train_loss=1637.749329
+[epoch 001 step 002500/005625] batch_loss=237.226013 running_train_loss=1580.449822
+[epoch 001 step 002600/005625] batch_loss=207.041748 running_train_loss=1527.529852
+[epoch 001 step 002700/005625] batch_loss=203.117935 running_train_loss=1478.604691
+[epoch 001 step 002800/005625] batch_loss=204.345047 running_train_loss=1433.118632
+[epoch 001 step 002900/005625] batch_loss=243.987793 running_train_loss=1390.693663
+[epoch 001 step 003000/005625] batch_loss=182.537140 running_train_loss=1351.335298
+[epoch 001 step 003100/005625] batch_loss=215.167648 running_train_loss=1314.273871
+[epoch 001 step 003200/005625] batch_loss=189.235306 running_train_loss=1279.544649
+[epoch 001 step 003300/005625] batch_loss=185.546432 running_train_loss=1246.946076
+[epoch 001 step 003400/005625] batch_loss=215.255585 running_train_loss=1216.141546
+[epoch 001 step 003500/005625] batch_loss=137.127533 running_train_loss=1187.172866
+[epoch 001 step 003600/005625] batch_loss=174.270645 running_train_loss=1159.909216
+[epoch 001 step 003700/005625] batch_loss=193.425980 running_train_loss=1133.877780
+[epoch 001 step 003800/005625] batch_loss=239.597061 running_train_loss=1109.313805
+[epoch 001 step 003900/005625] batch_loss=182.636566 running_train_loss=1086.048132
+[epoch 001 step 004000/005625] batch_loss=183.650787 running_train_loss=1063.803116
+[epoch 001 step 004100/005625] batch_loss=223.325897 running_train_loss=1042.687387
+[epoch 001 step 004200/005625] batch_loss=194.444443 running_train_loss=1022.436417
+[epoch 001 step 004300/005625] batch_loss=207.383102 running_train_loss=1003.331667
+[epoch 001 step 004400/005625] batch_loss=210.597595 running_train_loss=985.045646
+[epoch 001 step 004500/005625] batch_loss=165.360214 running_train_loss=967.430655
+[epoch 001 step 004600/005625] batch_loss=177.865463 running_train_loss=950.574477
+[epoch 001 step 004700/005625] batch_loss=160.780685 running_train_loss=934.533542
+[epoch 001 step 004800/005625] batch_loss=180.051300 running_train_loss=919.023528
+[epoch 001 step 004900/005625] batch_loss=166.721161 running_train_loss=904.175505
+[epoch 001 step 005000/005625] batch_loss=147.585480 running_train_loss=889.944664
+[epoch 001 step 005100/005625] batch_loss=199.635620 running_train_loss=876.202327
+[epoch 001 step 005200/005625] batch_loss=176.547226 running_train_loss=862.972434
+[epoch 001 step 005300/005625] batch_loss=183.658432 running_train_loss=850.205209
+[epoch 001 step 005400/005625] batch_loss=193.073746 running_train_loss=837.841823
+[epoch 001 step 005500/005625] batch_loss=174.878769 running_train_loss=825.894157
+[epoch 001 step 005600/005625] batch_loss=188.336121 running_train_loss=814.591443
+Validation starting ...
+Saved new best model: val_loss=185.296934
+Epoch [001/30] train_loss=811.746959 val_loss=185.296934 best_val=185.296934 best_epoch=1 lr=1.00e-03 time=89.2 min
+
+--------------------------------------------------------------------------------
+Starting epoch 2/30 at 2026-06-16T01:27:51
+[epoch 002 step 000100/005625] batch_loss=189.175171 running_train_loss=183.659428
+[epoch 002 step 000200/005625] batch_loss=192.951797 running_train_loss=178.137469
+[epoch 002 step 000300/005625] batch_loss=150.802673 running_train_loss=175.973693
+[epoch 002 step 000400/005625] batch_loss=121.732239 running_train_loss=173.126193
+[epoch 002 step 000500/005625] batch_loss=173.697983 running_train_loss=171.460988
+[epoch 002 step 000600/005625] batch_loss=145.958115 running_train_loss=169.773800
+[epoch 002 step 000700/005625] batch_loss=143.465317 running_train_loss=167.598807
+[epoch 002 step 000800/005625] batch_loss=134.743393 running_train_loss=164.592356
+[epoch 002 step 000900/005625] batch_loss=133.074585 running_train_loss=161.488964
+[epoch 002 step 001000/005625] batch_loss=115.839928 running_train_loss=158.451892
+[epoch 002 step 001100/005625] batch_loss=100.293121 running_train_loss=155.379452
+[epoch 002 step 001200/005625] batch_loss=115.474312 running_train_loss=152.239443
+[epoch 002 step 001300/005625] batch_loss=122.227020 running_train_loss=150.332089
+[epoch 002 step 001400/005625] batch_loss=140.074173 running_train_loss=147.739637
+[epoch 002 step 001500/005625] batch_loss=113.572525 running_train_loss=145.397879
+[epoch 002 step 001600/005625] batch_loss=96.086273 running_train_loss=142.975869
+[epoch 002 step 001700/005625] batch_loss=103.972954 running_train_loss=140.738411
+[epoch 002 step 001800/005625] batch_loss=111.843483 running_train_loss=138.428598
+[epoch 002 step 001900/005625] batch_loss=110.003052 running_train_loss=136.514072
+[epoch 002 step 002000/005625] batch_loss=76.959625 running_train_loss=134.480895
+[epoch 002 step 002100/005625] batch_loss=117.516174 running_train_loss=132.356312
+[epoch 002 step 002200/005625] batch_loss=76.556656 running_train_loss=130.484768
+[epoch 002 step 002300/005625] batch_loss=85.028450 running_train_loss=128.758918
+[epoch 002 step 002400/005625] batch_loss=76.431213 running_train_loss=127.164907
+[epoch 002 step 002500/005625] batch_loss=108.329193 running_train_loss=125.573517
+[epoch 002 step 002600/005625] batch_loss=74.536102 running_train_loss=124.020074
+[epoch 002 step 002700/005625] batch_loss=78.992043 running_train_loss=122.639866
+[epoch 002 step 002800/005625] batch_loss=88.863464 running_train_loss=121.406631
+[epoch 002 step 002900/005625] batch_loss=91.019661 running_train_loss=120.098197
+[epoch 002 step 003000/005625] batch_loss=66.271698 running_train_loss=119.072981
+[epoch 002 step 003100/005625] batch_loss=87.393105 running_train_loss=117.905316
+[epoch 002 step 003200/005625] batch_loss=96.555344 running_train_loss=116.853456
+[epoch 002 step 003300/005625] batch_loss=69.067017 running_train_loss=115.948868
+[epoch 002 step 003400/005625] batch_loss=86.418907 running_train_loss=114.988581
+[epoch 002 step 003500/005625] batch_loss=57.719200 running_train_loss=114.252109
+[epoch 002 step 003600/005625] batch_loss=66.824539 running_train_loss=113.508947
+[epoch 002 step 003700/005625] batch_loss=97.383797 running_train_loss=112.591759
+[epoch 002 step 003800/005625] batch_loss=108.850647 running_train_loss=111.835807
+[epoch 002 step 003900/005625] batch_loss=90.091049 running_train_loss=111.057010
+[epoch 002 step 004000/005625] batch_loss=85.651909 running_train_loss=110.327560
+[epoch 002 step 004100/005625] batch_loss=93.659325 running_train_loss=109.609915
+[epoch 002 step 004200/005625] batch_loss=68.127357 running_train_loss=108.850758
+[epoch 002 step 004300/005625] batch_loss=105.532402 running_train_loss=108.249271
+[epoch 002 step 004400/005625] batch_loss=84.371506 running_train_loss=107.621896
+[epoch 002 step 004500/005625] batch_loss=74.985466 running_train_loss=106.917862
+[epoch 002 step 004600/005625] batch_loss=64.488708 running_train_loss=106.318278
+[epoch 002 step 004700/005625] batch_loss=61.738628 running_train_loss=105.808143
+[epoch 002 step 004800/005625] batch_loss=73.354713 running_train_loss=105.118092
+[epoch 002 step 004900/005625] batch_loss=76.278748 running_train_loss=104.629813
+[epoch 002 step 005000/005625] batch_loss=55.765446 running_train_loss=104.145314
+[epoch 002 step 005100/005625] batch_loss=95.639427 running_train_loss=103.697806
+[epoch 002 step 005200/005625] batch_loss=64.876595 running_train_loss=103.181017
+[epoch 002 step 005300/005625] batch_loss=66.452858 running_train_loss=102.653265
+[epoch 002 step 005400/005625] batch_loss=75.134407 running_train_loss=102.135031
+[epoch 002 step 005500/005625] batch_loss=72.524521 running_train_loss=101.622066
+[epoch 002 step 005600/005625] batch_loss=85.660851 running_train_loss=101.361301
+Validation starting ...
+Saved new best model: val_loss=78.009318
+Epoch [002/30] train_loss=101.241957 val_loss=78.009318 best_val=78.009318 best_epoch=2 lr=1.00e-03 time=26.4 min
+
+--------------------------------------------------------------------------------
+Starting epoch 3/30 at 2026-06-16T01:54:16
+[epoch 003 step 000100/005625] batch_loss=81.313843 running_train_loss=81.086256
+[epoch 003 step 000200/005625] batch_loss=92.089607 running_train_loss=78.322760
+[epoch 003 step 000300/005625] batch_loss=67.141235 running_train_loss=77.852886
+[epoch 003 step 000400/005625] batch_loss=50.453144 running_train_loss=77.583203
+[epoch 003 step 000500/005625] batch_loss=77.407967 running_train_loss=77.941404
+[epoch 003 step 000600/005625] batch_loss=65.122711 running_train_loss=77.917079
+[epoch 003 step 000700/005625] batch_loss=79.650833 running_train_loss=77.670199
+[epoch 003 step 000800/005625] batch_loss=70.412834 running_train_loss=77.317320
+[epoch 003 step 000900/005625] batch_loss=70.976273 running_train_loss=77.018765
+[epoch 003 step 001000/005625] batch_loss=71.848480 running_train_loss=77.018774
+[epoch 003 step 001100/005625] batch_loss=53.133732 running_train_loss=76.631802
+[epoch 003 step 001200/005625] batch_loss=72.384125 running_train_loss=76.162529
+[epoch 003 step 001300/005625] batch_loss=74.160072 running_train_loss=76.099223
+[epoch 003 step 001400/005625] batch_loss=98.698845 running_train_loss=75.939160
+[epoch 003 step 001500/005625] batch_loss=78.254089 running_train_loss=75.947912
+[epoch 003 step 001600/005625] batch_loss=68.721306 running_train_loss=75.827780
+[epoch 003 step 001700/005625] batch_loss=75.713341 running_train_loss=75.554391
+[epoch 003 step 001800/005625] batch_loss=81.566704 running_train_loss=75.358243
+[epoch 003 step 001900/005625] batch_loss=78.853302 running_train_loss=75.357775
+[epoch 003 step 002000/005625] batch_loss=63.617523 running_train_loss=75.289475
+[epoch 003 step 002100/005625] batch_loss=80.103813 running_train_loss=75.035346
+[epoch 003 step 002200/005625] batch_loss=59.792198 running_train_loss=74.908840
+[epoch 003 step 002300/005625] batch_loss=68.444107 running_train_loss=74.643163
+[epoch 003 step 002400/005625] batch_loss=62.017811 running_train_loss=74.611311
+[epoch 003 step 002500/005625] batch_loss=100.008560 running_train_loss=74.447180
+[epoch 003 step 002600/005625] batch_loss=56.156994 running_train_loss=74.149434
+[epoch 003 step 002700/005625] batch_loss=56.942410 running_train_loss=73.967775
+[epoch 003 step 002800/005625] batch_loss=67.369843 running_train_loss=73.754319
+[epoch 003 step 002900/005625] batch_loss=77.040115 running_train_loss=73.571356
+[epoch 003 step 003000/005625] batch_loss=54.091923 running_train_loss=73.477154
+[epoch 003 step 003100/005625] batch_loss=70.049377 running_train_loss=73.231286
+[epoch 003 step 003200/005625] batch_loss=71.583282 running_train_loss=73.030549
+[epoch 003 step 003300/005625] batch_loss=53.613869 running_train_loss=72.845197
+[epoch 003 step 003400/005625] batch_loss=70.748062 running_train_loss=72.692571
+[epoch 003 step 003500/005625] batch_loss=46.405453 running_train_loss=72.571938
+[epoch 003 step 003600/005625] batch_loss=62.949844 running_train_loss=72.443020
+[epoch 003 step 003700/005625] batch_loss=68.026451 running_train_loss=72.266715
+[epoch 003 step 003800/005625] batch_loss=100.330437 running_train_loss=72.221088
+[epoch 003 step 003900/005625] batch_loss=65.008438 running_train_loss=72.056035
+[epoch 003 step 004000/005625] batch_loss=69.746315 running_train_loss=71.898637
+[epoch 003 step 004100/005625] batch_loss=81.479401 running_train_loss=71.781208
+[epoch 003 step 004200/005625] batch_loss=51.402470 running_train_loss=71.521971
+[epoch 003 step 004300/005625] batch_loss=78.506134 running_train_loss=71.409982
+[epoch 003 step 004400/005625] batch_loss=71.653259 running_train_loss=71.232279
+[epoch 003 step 004500/005625] batch_loss=62.243660 running_train_loss=71.055675
+[epoch 003 step 004600/005625] batch_loss=56.198067 running_train_loss=71.045727
+[epoch 003 step 004700/005625] batch_loss=53.996346 running_train_loss=70.918765
+[epoch 003 step 004800/005625] batch_loss=58.041862 running_train_loss=70.681417
+[epoch 003 step 004900/005625] batch_loss=63.767319 running_train_loss=70.632299
+[epoch 003 step 005000/005625] batch_loss=60.437656 running_train_loss=70.552659
+[epoch 003 step 005100/005625] batch_loss=77.708771 running_train_loss=70.505483
+[epoch 003 step 005200/005625] batch_loss=52.512718 running_train_loss=70.328504
+[epoch 003 step 005300/005625] batch_loss=55.673641 running_train_loss=70.141997
+[epoch 003 step 005400/005625] batch_loss=56.425800 running_train_loss=69.969189
+[epoch 003 step 005500/005625] batch_loss=58.358246 running_train_loss=69.768387
+[epoch 003 step 005600/005625] batch_loss=74.164528 running_train_loss=69.819908
+Skipping validation this epoch because --val-every 2
+Epoch [003/30] train_loss=69.770477 val_loss=78.009318 best_val=78.009318 best_epoch=2 lr=1.00e-03 time=8.3 min
+
+--------------------------------------------------------------------------------
+Starting epoch 4/30 at 2026-06-16T02:02:31
+[epoch 004 step 000100/005625] batch_loss=64.346985 running_train_loss=66.124976
+[epoch 004 step 000200/005625] batch_loss=70.212334 running_train_loss=63.236431
+[epoch 004 step 000300/005625] batch_loss=50.549911 running_train_loss=62.571556
+[epoch 004 step 000400/005625] batch_loss=49.137589 running_train_loss=62.130036
+[epoch 004 step 000500/005625] batch_loss=59.615757 running_train_loss=62.581751
+[epoch 004 step 000600/005625] batch_loss=53.879990 running_train_loss=62.489338
+[epoch 004 step 000700/005625] batch_loss=64.193855 running_train_loss=62.054055
+[epoch 004 step 000800/005625] batch_loss=59.904087 running_train_loss=61.902621
+[epoch 004 step 000900/005625] batch_loss=52.602020 running_train_loss=61.764430
+[epoch 004 step 001000/005625] batch_loss=51.083282 running_train_loss=61.984624
+[epoch 004 step 001100/005625] batch_loss=42.116375 running_train_loss=61.673480
+[epoch 004 step 001200/005625] batch_loss=55.235004 running_train_loss=61.269953
+[epoch 004 step 001300/005625] batch_loss=57.303715 running_train_loss=61.333596
+[epoch 004 step 001400/005625] batch_loss=73.331703 running_train_loss=61.554720
+[epoch 004 step 001500/005625] batch_loss=72.309921 running_train_loss=61.697942
+[epoch 004 step 001600/005625] batch_loss=52.378479 running_train_loss=61.611725
+[epoch 004 step 001700/005625] batch_loss=64.404594 running_train_loss=61.430419
+[epoch 004 step 001800/005625] batch_loss=62.961178 running_train_loss=61.098777
+[epoch 004 step 001900/005625] batch_loss=60.563301 running_train_loss=60.957357
+[epoch 004 step 002000/005625] batch_loss=51.213852 running_train_loss=60.922228
+[epoch 004 step 002100/005625] batch_loss=64.876816 running_train_loss=60.769926
+[epoch 004 step 002200/005625] batch_loss=49.808170 running_train_loss=60.665218
+[epoch 004 step 002300/005625] batch_loss=55.919453 running_train_loss=60.531634
+[epoch 004 step 002400/005625] batch_loss=49.422218 running_train_loss=60.618528
+[epoch 004 step 002500/005625] batch_loss=76.831566 running_train_loss=60.468700
+[epoch 004 step 002600/005625] batch_loss=48.334499 running_train_loss=60.362724
+[epoch 004 step 002700/005625] batch_loss=49.442657 running_train_loss=60.293467
+[epoch 004 step 002800/005625] batch_loss=55.794449 running_train_loss=60.201412
+[epoch 004 step 002900/005625] batch_loss=70.575912 running_train_loss=60.129998
+[epoch 004 step 003000/005625] batch_loss=44.759506 running_train_loss=60.191061
+[epoch 004 step 003100/005625] batch_loss=59.837574 running_train_loss=60.090521
+[epoch 004 step 003200/005625] batch_loss=62.651924 running_train_loss=60.027790
+[epoch 004 step 003300/005625] batch_loss=48.485916 running_train_loss=59.985166
+[epoch 004 step 003400/005625] batch_loss=92.839317 running_train_loss=60.161357
+[epoch 004 step 003500/005625] batch_loss=39.962402 running_train_loss=60.341975
+[epoch 004 step 003600/005625] batch_loss=48.923355 running_train_loss=60.347663
+[epoch 004 step 003700/005625] batch_loss=65.755684 running_train_loss=60.305854
+[epoch 004 step 003800/005625] batch_loss=83.379890 running_train_loss=60.333609
+[epoch 004 step 003900/005625] batch_loss=57.035072 running_train_loss=60.273310
+[epoch 004 step 004000/005625] batch_loss=52.883343 running_train_loss=60.217976
+[epoch 004 step 004100/005625] batch_loss=75.655365 running_train_loss=60.157231
+[epoch 004 step 004200/005625] batch_loss=44.825535 running_train_loss=60.031051
+[epoch 004 step 004300/005625] batch_loss=66.121262 running_train_loss=60.018844
+[epoch 004 step 004400/005625] batch_loss=59.266399 running_train_loss=60.028769
+[epoch 004 step 004500/005625] batch_loss=52.306202 running_train_loss=59.930528
+[epoch 004 step 004600/005625] batch_loss=49.548576 running_train_loss=59.882839
+[epoch 004 step 004700/005625] batch_loss=47.793797 running_train_loss=59.860521
+[epoch 004 step 004800/005625] batch_loss=51.567337 running_train_loss=59.715711
+[epoch 004 step 004900/005625] batch_loss=55.601852 running_train_loss=59.653815
+[epoch 004 step 005000/005625] batch_loss=45.765209 running_train_loss=59.637217
+[epoch 004 step 005100/005625] batch_loss=72.610268 running_train_loss=59.642517
+[epoch 004 step 005200/005625] batch_loss=62.629818 running_train_loss=59.579656
+[epoch 004 step 005300/005625] batch_loss=60.199493 running_train_loss=59.501436
+[epoch 004 step 005400/005625] batch_loss=52.236473 running_train_loss=59.439749
+[epoch 004 step 005500/005625] batch_loss=50.848366 running_train_loss=59.344732
+[epoch 004 step 005600/005625] batch_loss=66.737755 running_train_loss=59.459221
+Validation starting ...
+Saved new best model: val_loss=61.153397
+Epoch [004/30] train_loss=59.431260 val_loss=61.153397 best_val=61.153397 best_epoch=4 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 5/30 at 2026-06-16T02:11:16
+[epoch 005 step 000100/005625] batch_loss=53.340950 running_train_loss=59.885430
+[epoch 005 step 000200/005625] batch_loss=68.119209 running_train_loss=57.826854
+[epoch 005 step 000300/005625] batch_loss=47.701351 running_train_loss=57.650978
+[epoch 005 step 000400/005625] batch_loss=40.364891 running_train_loss=57.440843
+[epoch 005 step 000500/005625] batch_loss=53.098854 running_train_loss=57.811058
+[epoch 005 step 000600/005625] batch_loss=48.974491 running_train_loss=57.743033
+[epoch 005 step 000700/005625] batch_loss=59.807632 running_train_loss=57.390757
+[epoch 005 step 000800/005625] batch_loss=58.002579 running_train_loss=57.100195
+[epoch 005 step 000900/005625] batch_loss=49.353920 running_train_loss=57.000735
+[epoch 005 step 001000/005625] batch_loss=48.494785 running_train_loss=57.124621
+[epoch 005 step 001100/005625] batch_loss=39.841511 running_train_loss=56.961462
+[epoch 005 step 001200/005625] batch_loss=48.516865 running_train_loss=56.653605
+[epoch 005 step 001300/005625] batch_loss=54.763451 running_train_loss=56.655463
+[epoch 005 step 001400/005625] batch_loss=70.636841 running_train_loss=57.020804
+[epoch 005 step 001500/005625] batch_loss=57.143925 running_train_loss=57.034514
+[epoch 005 step 001600/005625] batch_loss=50.912670 running_train_loss=56.864492
+[epoch 005 step 001700/005625] batch_loss=54.636131 running_train_loss=56.779433
+[epoch 005 step 001800/005625] batch_loss=57.748978 running_train_loss=56.463196
+[epoch 005 step 001900/005625] batch_loss=56.317753 running_train_loss=56.339950
+[epoch 005 step 002000/005625] batch_loss=46.515606 running_train_loss=56.376678
+[epoch 005 step 002100/005625] batch_loss=54.008003 running_train_loss=56.241581
+[epoch 005 step 002200/005625] batch_loss=46.706352 running_train_loss=56.123125
+[epoch 005 step 002300/005625] batch_loss=53.216084 running_train_loss=55.952390
+[epoch 005 step 002400/005625] batch_loss=46.161106 running_train_loss=56.031633
+[epoch 005 step 002500/005625] batch_loss=71.546806 running_train_loss=55.910198
+[epoch 005 step 002600/005625] batch_loss=43.807499 running_train_loss=55.869909
+[epoch 005 step 002700/005625] batch_loss=47.271378 running_train_loss=55.793589
+[epoch 005 step 002800/005625] batch_loss=52.888100 running_train_loss=55.712813
+[epoch 005 step 002900/005625] batch_loss=64.319748 running_train_loss=55.658053
+[epoch 005 step 003000/005625] batch_loss=41.075455 running_train_loss=55.740349
+[epoch 005 step 003100/005625] batch_loss=56.475239 running_train_loss=55.671156
+[epoch 005 step 003200/005625] batch_loss=58.793755 running_train_loss=55.635527
+[epoch 005 step 003300/005625] batch_loss=47.952263 running_train_loss=55.639686
+[epoch 005 step 003400/005625] batch_loss=53.522469 running_train_loss=55.598319
+[epoch 005 step 003500/005625] batch_loss=37.634018 running_train_loss=55.568577
+[epoch 005 step 003600/005625] batch_loss=55.511635 running_train_loss=55.973884
+[epoch 005 step 003700/005625] batch_loss=61.331429 running_train_loss=56.015162
+[epoch 005 step 003800/005625] batch_loss=86.746452 running_train_loss=56.077067
+[epoch 005 step 003900/005625] batch_loss=55.352646 running_train_loss=56.038322
+[epoch 005 step 004000/005625] batch_loss=53.577919 running_train_loss=56.010861
+[epoch 005 step 004100/005625] batch_loss=71.653786 running_train_loss=55.951972
+[epoch 005 step 004200/005625] batch_loss=42.359230 running_train_loss=55.835465
+[epoch 005 step 004300/005625] batch_loss=58.102734 running_train_loss=55.832605
+[epoch 005 step 004400/005625] batch_loss=62.703293 running_train_loss=55.771947
+[epoch 005 step 004500/005625] batch_loss=46.232307 running_train_loss=55.687317
+[epoch 005 step 004600/005625] batch_loss=47.594452 running_train_loss=55.659216
+[epoch 005 step 004700/005625] batch_loss=47.344917 running_train_loss=55.670031
+[epoch 005 step 004800/005625] batch_loss=47.802990 running_train_loss=55.556343
+[epoch 005 step 004900/005625] batch_loss=50.596790 running_train_loss=55.514017
+[epoch 005 step 005000/005625] batch_loss=42.940468 running_train_loss=55.546018
+[epoch 005 step 005100/005625] batch_loss=66.023666 running_train_loss=55.578529
+[epoch 005 step 005200/005625] batch_loss=52.323418 running_train_loss=55.531888
+[epoch 005 step 005300/005625] batch_loss=50.765263 running_train_loss=55.464322
+[epoch 005 step 005400/005625] batch_loss=47.542782 running_train_loss=55.393385
+[epoch 005 step 005500/005625] batch_loss=48.381618 running_train_loss=55.311265
+[epoch 005 step 005600/005625] batch_loss=72.180664 running_train_loss=55.471653
+Skipping validation this epoch because --val-every 2
+Epoch [005/30] train_loss=55.451128 val_loss=61.153397 best_val=61.153397 best_epoch=4 lr=1.00e-03 time=8.2 min
+
+--------------------------------------------------------------------------------
+Starting epoch 6/30 at 2026-06-16T02:19:28
+[epoch 006 step 000100/005625] batch_loss=51.281357 running_train_loss=58.339467
+[epoch 006 step 000200/005625] batch_loss=61.899933 running_train_loss=55.206828
+[epoch 006 step 000300/005625] batch_loss=46.455986 running_train_loss=54.472368
+[epoch 006 step 000400/005625] batch_loss=39.597229 running_train_loss=54.099073
+[epoch 006 step 000500/005625] batch_loss=49.826366 running_train_loss=54.657631
+[epoch 006 step 000600/005625] batch_loss=46.642620 running_train_loss=54.467362
+[epoch 006 step 000700/005625] batch_loss=56.542820 running_train_loss=54.157185
+[epoch 006 step 000800/005625] batch_loss=55.134880 running_train_loss=53.796499
+[epoch 006 step 000900/005625] batch_loss=46.371105 running_train_loss=53.774115
+[epoch 006 step 001000/005625] batch_loss=47.561249 running_train_loss=53.979590
+[epoch 006 step 001100/005625] batch_loss=38.450172 running_train_loss=53.772370
+[epoch 006 step 001200/005625] batch_loss=47.462635 running_train_loss=53.534596
+[epoch 006 step 001300/005625] batch_loss=53.902260 running_train_loss=53.618562
+[epoch 006 step 001400/005625] batch_loss=60.467926 running_train_loss=53.531012
+[epoch 006 step 001500/005625] batch_loss=51.868923 running_train_loss=53.514863
+[epoch 006 step 001600/005625] batch_loss=49.122658 running_train_loss=53.352350
+[epoch 006 step 001700/005625] batch_loss=55.399097 running_train_loss=53.287705
+[epoch 006 step 001800/005625] batch_loss=56.167950 running_train_loss=53.074230
+[epoch 006 step 001900/005625] batch_loss=51.691376 running_train_loss=52.986117
+[epoch 006 step 002000/005625] batch_loss=45.385841 running_train_loss=53.036983
+[epoch 006 step 002100/005625] batch_loss=51.304100 running_train_loss=52.943073
+[epoch 006 step 002200/005625] batch_loss=42.774204 running_train_loss=52.820669
+[epoch 006 step 002300/005625] batch_loss=51.606628 running_train_loss=52.643584
+[epoch 006 step 002400/005625] batch_loss=44.406738 running_train_loss=52.729478
+[epoch 006 step 002500/005625] batch_loss=65.229568 running_train_loss=52.603312
+[epoch 006 step 002600/005625] batch_loss=41.107903 running_train_loss=52.595527
+[epoch 006 step 002700/005625] batch_loss=43.502506 running_train_loss=52.564631
+[epoch 006 step 002800/005625] batch_loss=50.606693 running_train_loss=52.505184
+[epoch 006 step 002900/005625] batch_loss=59.777397 running_train_loss=52.459385
+[epoch 006 step 003000/005625] batch_loss=38.643444 running_train_loss=52.597742
+[epoch 006 step 003100/005625] batch_loss=55.004807 running_train_loss=52.530499
+[epoch 006 step 003200/005625] batch_loss=53.654194 running_train_loss=52.477662
+[epoch 006 step 003300/005625] batch_loss=46.747231 running_train_loss=52.480653
+[epoch 006 step 003400/005625] batch_loss=50.386387 running_train_loss=52.425714
+[epoch 006 step 003500/005625] batch_loss=37.000443 running_train_loss=52.420711
+[epoch 006 step 003600/005625] batch_loss=39.565884 running_train_loss=52.451273
+[epoch 006 step 003700/005625] batch_loss=56.444950 running_train_loss=52.370940
+[epoch 006 step 003800/005625] batch_loss=70.231812 running_train_loss=52.510110
+[epoch 006 step 003900/005625] batch_loss=54.254051 running_train_loss=52.492174
+[epoch 006 step 004000/005625] batch_loss=48.352463 running_train_loss=52.500517
+[epoch 006 step 004100/005625] batch_loss=64.798126 running_train_loss=52.477662
+[epoch 006 step 004200/005625] batch_loss=39.824734 running_train_loss=52.391862
+[epoch 006 step 004300/005625] batch_loss=55.086460 running_train_loss=52.405124
+[epoch 006 step 004400/005625] batch_loss=62.006516 running_train_loss=52.408794
+[epoch 006 step 004500/005625] batch_loss=43.738251 running_train_loss=52.360122
+[epoch 006 step 004600/005625] batch_loss=45.256737 running_train_loss=52.357538
+[epoch 006 step 004700/005625] batch_loss=40.432884 running_train_loss=52.357643
+[epoch 006 step 004800/005625] batch_loss=45.356522 running_train_loss=52.247498
+[epoch 006 step 004900/005625] batch_loss=49.510040 running_train_loss=52.218275
+[epoch 006 step 005000/005625] batch_loss=38.375637 running_train_loss=52.240317
+[epoch 006 step 005100/005625] batch_loss=62.553505 running_train_loss=52.273340
+[epoch 006 step 005200/005625] batch_loss=49.539791 running_train_loss=52.242819
+[epoch 006 step 005300/005625] batch_loss=48.654839 running_train_loss=52.186598
+[epoch 006 step 005400/005625] batch_loss=45.941654 running_train_loss=52.120470
+[epoch 006 step 005500/005625] batch_loss=49.383320 running_train_loss=52.076824
+[epoch 006 step 005600/005625] batch_loss=61.475777 running_train_loss=52.240363
+Validation starting ...
+Saved new best model: val_loss=57.006427
+Epoch [006/30] train_loss=52.222474 val_loss=57.006427 best_val=57.006427 best_epoch=6 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 7/30 at 2026-06-16T02:28:14
+[epoch 007 step 000100/005625] batch_loss=48.294086 running_train_loss=55.094382
+[epoch 007 step 000200/005625] batch_loss=61.016552 running_train_loss=52.043465
+[epoch 007 step 000300/005625] batch_loss=45.921844 running_train_loss=51.566700
+[epoch 007 step 000400/005625] batch_loss=38.715721 running_train_loss=51.130885
+[epoch 007 step 000500/005625] batch_loss=47.048412 running_train_loss=51.739200
+[epoch 007 step 000600/005625] batch_loss=43.226051 running_train_loss=51.617500
+[epoch 007 step 000700/005625] batch_loss=54.572861 running_train_loss=51.352938
+[epoch 007 step 000800/005625] batch_loss=52.791775 running_train_loss=50.992729
+[epoch 007 step 000900/005625] batch_loss=42.429028 running_train_loss=50.778138
+[epoch 007 step 001000/005625] batch_loss=44.400074 running_train_loss=51.110354
+[epoch 007 step 001100/005625] batch_loss=35.939320 running_train_loss=50.960119
+[epoch 007 step 001200/005625] batch_loss=43.256874 running_train_loss=50.768633
+[epoch 007 step 001300/005625] batch_loss=47.005707 running_train_loss=50.820544
+[epoch 007 step 001400/005625] batch_loss=103.278656 running_train_loss=56.921802
+[epoch 007 step 001500/005625] batch_loss=56.755398 running_train_loss=57.341334
+[epoch 007 step 001600/005625] batch_loss=48.920963 running_train_loss=57.340485
+[epoch 007 step 001700/005625] batch_loss=52.577198 running_train_loss=57.047558
+[epoch 007 step 001800/005625] batch_loss=54.818905 running_train_loss=56.657782
+[epoch 007 step 001900/005625] batch_loss=50.977249 running_train_loss=56.412911
+[epoch 007 step 002000/005625] batch_loss=40.899616 running_train_loss=56.215880
+[epoch 007 step 002100/005625] batch_loss=47.679920 running_train_loss=56.008070
+[epoch 007 step 002200/005625] batch_loss=41.806332 running_train_loss=55.801136
+[epoch 007 step 002300/005625] batch_loss=53.384712 running_train_loss=55.509952
+[epoch 007 step 002400/005625] batch_loss=45.524719 running_train_loss=55.453535
+[epoch 007 step 002500/005625] batch_loss=67.409111 running_train_loss=55.300444
+[epoch 007 step 002600/005625] batch_loss=40.763153 running_train_loss=55.126579
+[epoch 007 step 002700/005625] batch_loss=46.179787 running_train_loss=54.942992
+[epoch 007 step 002800/005625] batch_loss=49.090324 running_train_loss=54.832610
+[epoch 007 step 002900/005625] batch_loss=57.726238 running_train_loss=54.694850
+[epoch 007 step 003000/005625] batch_loss=39.256271 running_train_loss=54.701914
+[epoch 007 step 003100/005625] batch_loss=54.768978 running_train_loss=54.556405
+[epoch 007 step 003200/005625] batch_loss=51.267982 running_train_loss=54.463303
+[epoch 007 step 003300/005625] batch_loss=44.905792 running_train_loss=54.417113
+[epoch 007 step 003400/005625] batch_loss=50.414890 running_train_loss=54.263861
+[epoch 007 step 003500/005625] batch_loss=36.558613 running_train_loss=54.188694
+[epoch 007 step 003600/005625] batch_loss=56.692513 running_train_loss=54.226648
+[epoch 007 step 003700/005625] batch_loss=57.906940 running_train_loss=54.140986
+[epoch 007 step 003800/005625] batch_loss=71.825905 running_train_loss=54.136707
+[epoch 007 step 003900/005625] batch_loss=54.314182 running_train_loss=54.057469
+[epoch 007 step 004000/005625] batch_loss=50.738979 running_train_loss=53.987399
+[epoch 007 step 004100/005625] batch_loss=64.408356 running_train_loss=53.888013
+[epoch 007 step 004200/005625] batch_loss=39.825096 running_train_loss=53.742688
+[epoch 007 step 004300/005625] batch_loss=59.718716 running_train_loss=53.743269
+[epoch 007 step 004400/005625] batch_loss=53.736492 running_train_loss=53.671533
+[epoch 007 step 004500/005625] batch_loss=46.892422 running_train_loss=53.548544
+[epoch 007 step 004600/005625] batch_loss=44.842716 running_train_loss=53.495669
+[epoch 007 step 004700/005625] batch_loss=40.033871 running_train_loss=53.456829
+[epoch 007 step 004800/005625] batch_loss=49.805756 running_train_loss=53.309557
+[epoch 007 step 004900/005625] batch_loss=48.456486 running_train_loss=53.220931
+[epoch 007 step 005000/005625] batch_loss=43.006405 running_train_loss=53.220116
+[epoch 007 step 005100/005625] batch_loss=83.374985 running_train_loss=54.190687
+[epoch 007 step 005200/005625] batch_loss=46.010719 running_train_loss=54.214482
+[epoch 007 step 005300/005625] batch_loss=48.819382 running_train_loss=54.169232
+[epoch 007 step 005400/005625] batch_loss=47.445488 running_train_loss=54.106829
+[epoch 007 step 005500/005625] batch_loss=43.982132 running_train_loss=54.003672
+[epoch 007 step 005600/005625] batch_loss=58.881622 running_train_loss=54.103346
+Skipping validation this epoch because --val-every 2
+Epoch [007/30] train_loss=54.070895 val_loss=57.006427 best_val=57.006427 best_epoch=6 lr=1.00e-03 time=8.1 min
+
+--------------------------------------------------------------------------------
+Starting epoch 8/30 at 2026-06-16T02:36:22
+[epoch 008 step 000100/005625] batch_loss=50.923313 running_train_loss=52.393177
+[epoch 008 step 000200/005625] batch_loss=59.327538 running_train_loss=50.337632
+[epoch 008 step 000300/005625] batch_loss=42.400852 running_train_loss=50.179897
+[epoch 008 step 000400/005625] batch_loss=36.324615 running_train_loss=50.278335
+[epoch 008 step 000500/005625] batch_loss=46.460037 running_train_loss=50.759314
+[epoch 008 step 000600/005625] batch_loss=41.772682 running_train_loss=50.726936
+[epoch 008 step 000700/005625] batch_loss=54.192223 running_train_loss=50.438174
+[epoch 008 step 000800/005625] batch_loss=51.107559 running_train_loss=50.309818
+[epoch 008 step 000900/005625] batch_loss=49.501419 running_train_loss=50.409068
+[epoch 008 step 001000/005625] batch_loss=45.061531 running_train_loss=50.489561
+[epoch 008 step 001100/005625] batch_loss=34.821705 running_train_loss=50.297727
+[epoch 008 step 001200/005625] batch_loss=43.631748 running_train_loss=50.105640
+[epoch 008 step 001300/005625] batch_loss=45.029827 running_train_loss=50.154192
+[epoch 008 step 001400/005625] batch_loss=54.229736 running_train_loss=50.019385
+[epoch 008 step 001500/005625] batch_loss=46.315987 running_train_loss=50.064536
+[epoch 008 step 001600/005625] batch_loss=43.929581 running_train_loss=49.949957
+[epoch 008 step 001700/005625] batch_loss=56.483871 running_train_loss=49.885611
+[epoch 008 step 001800/005625] batch_loss=51.204098 running_train_loss=49.648429
+[epoch 008 step 001900/005625] batch_loss=47.752403 running_train_loss=49.578956
+[epoch 008 step 002000/005625] batch_loss=40.278595 running_train_loss=49.592553
+[epoch 008 step 002100/005625] batch_loss=46.819344 running_train_loss=49.510951
+[epoch 008 step 002200/005625] batch_loss=39.392601 running_train_loss=49.414326
+[epoch 008 step 002300/005625] batch_loss=49.185352 running_train_loss=49.277116
+[epoch 008 step 002400/005625] batch_loss=40.924500 running_train_loss=49.351021
+[epoch 008 step 002500/005625] batch_loss=62.003292 running_train_loss=49.241648
+[epoch 008 step 002600/005625] batch_loss=38.520309 running_train_loss=49.242089
+[epoch 008 step 002700/005625] batch_loss=41.208130 running_train_loss=49.171405
+[epoch 008 step 002800/005625] batch_loss=48.171448 running_train_loss=49.140280
+[epoch 008 step 002900/005625] batch_loss=56.060555 running_train_loss=49.117868
+[epoch 008 step 003000/005625] batch_loss=35.733971 running_train_loss=49.209257
+[epoch 008 step 003100/005625] batch_loss=50.111282 running_train_loss=49.165197
+[epoch 008 step 003200/005625] batch_loss=51.227139 running_train_loss=49.126879
+[epoch 008 step 003300/005625] batch_loss=47.964157 running_train_loss=49.142716
+[epoch 008 step 003400/005625] batch_loss=47.419899 running_train_loss=49.116154
+[epoch 008 step 003500/005625] batch_loss=36.441101 running_train_loss=49.113147
+[epoch 008 step 003600/005625] batch_loss=47.487423 running_train_loss=49.186809
+[epoch 008 step 003700/005625] batch_loss=49.896591 running_train_loss=49.116179
+[epoch 008 step 003800/005625] batch_loss=57.941853 running_train_loss=49.134614
+[epoch 008 step 003900/005625] batch_loss=55.192177 running_train_loss=49.153507
+[epoch 008 step 004000/005625] batch_loss=47.999271 running_train_loss=49.169462
+[epoch 008 step 004100/005625] batch_loss=105.168465 running_train_loss=49.219799
+[epoch 008 step 004200/005625] batch_loss=38.736130 running_train_loss=49.286720
+[epoch 008 step 004300/005625] batch_loss=55.701263 running_train_loss=49.311996
+[epoch 008 step 004400/005625] batch_loss=50.971226 running_train_loss=49.304379
+[epoch 008 step 004500/005625] batch_loss=43.722034 running_train_loss=49.243569
+[epoch 008 step 004600/005625] batch_loss=42.202957 running_train_loss=49.232263
+[epoch 008 step 004700/005625] batch_loss=38.781559 running_train_loss=49.236780
+[epoch 008 step 004800/005625] batch_loss=42.261490 running_train_loss=49.133049
+[epoch 008 step 004900/005625] batch_loss=47.748291 running_train_loss=49.092279
+[epoch 008 step 005000/005625] batch_loss=39.710060 running_train_loss=49.158308
+[epoch 008 step 005100/005625] batch_loss=56.652138 running_train_loss=49.200367
+[epoch 008 step 005200/005625] batch_loss=43.994862 running_train_loss=49.168585
+[epoch 008 step 005300/005625] batch_loss=42.078453 running_train_loss=49.121779
+[epoch 008 step 005400/005625] batch_loss=46.018402 running_train_loss=49.077137
+[epoch 008 step 005500/005625] batch_loss=42.506786 running_train_loss=49.026931
+[epoch 008 step 005600/005625] batch_loss=59.384274 running_train_loss=49.189209
+Validation starting ...
+Saved new best model: val_loss=54.996849
+Epoch [008/30] train_loss=49.177404 val_loss=54.996849 best_val=54.996849 best_epoch=8 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 9/30 at 2026-06-16T02:45:11
+[epoch 009 step 000100/005625] batch_loss=46.023289 running_train_loss=52.301104
+[epoch 009 step 000200/005625] batch_loss=56.730072 running_train_loss=49.338173
+[epoch 009 step 000300/005625] batch_loss=44.427242 running_train_loss=48.895374
+[epoch 009 step 000400/005625] batch_loss=35.147610 running_train_loss=48.499600
+[epoch 009 step 000500/005625] batch_loss=44.267162 running_train_loss=49.138768
+[epoch 009 step 000600/005625] batch_loss=41.300529 running_train_loss=48.963331
+[epoch 009 step 000700/005625] batch_loss=50.727711 running_train_loss=48.648580
+[epoch 009 step 000800/005625] batch_loss=50.360943 running_train_loss=48.501991
+[epoch 009 step 000900/005625] batch_loss=39.979458 running_train_loss=48.373357
+[epoch 009 step 001000/005625] batch_loss=43.257278 running_train_loss=48.498203
+[epoch 009 step 001100/005625] batch_loss=37.512321 running_train_loss=48.301821
+[epoch 009 step 001200/005625] batch_loss=41.501934 running_train_loss=48.115514
+[epoch 009 step 001300/005625] batch_loss=44.709599 running_train_loss=48.273441
+[epoch 009 step 001400/005625] batch_loss=52.582874 running_train_loss=48.163500
+[epoch 009 step 001500/005625] batch_loss=44.788124 running_train_loss=48.216734
+[epoch 009 step 001600/005625] batch_loss=43.100437 running_train_loss=48.089392
+[epoch 009 step 001700/005625] batch_loss=52.225109 running_train_loss=48.047120
+[epoch 009 step 001800/005625] batch_loss=52.506203 running_train_loss=47.790336
+[epoch 009 step 001900/005625] batch_loss=45.898811 running_train_loss=47.754488
+[epoch 009 step 002000/005625] batch_loss=36.141567 running_train_loss=47.732931
+[epoch 009 step 002100/005625] batch_loss=46.474125 running_train_loss=47.678675
+[epoch 009 step 002200/005625] batch_loss=37.519207 running_train_loss=47.589830
+[epoch 009 step 002300/005625] batch_loss=47.542370 running_train_loss=47.470449
+[epoch 009 step 002400/005625] batch_loss=39.139473 running_train_loss=47.539520
+[epoch 009 step 002500/005625] batch_loss=59.882561 running_train_loss=47.424824
+[epoch 009 step 002600/005625] batch_loss=39.484398 running_train_loss=47.407588
+[epoch 009 step 002700/005625] batch_loss=41.503937 running_train_loss=47.383027
+[epoch 009 step 002800/005625] batch_loss=48.230984 running_train_loss=47.386099
+[epoch 009 step 002900/005625] batch_loss=54.355038 running_train_loss=47.392397
+[epoch 009 step 003000/005625] batch_loss=34.279339 running_train_loss=47.483083
+[epoch 009 step 003100/005625] batch_loss=49.218227 running_train_loss=47.428343
+[epoch 009 step 003200/005625] batch_loss=50.018009 running_train_loss=47.402024
+[epoch 009 step 003300/005625] batch_loss=44.601364 running_train_loss=47.408817
+[epoch 009 step 003400/005625] batch_loss=46.410187 running_train_loss=47.359469
+[epoch 009 step 003500/005625] batch_loss=34.806747 running_train_loss=47.378447
+[epoch 009 step 003600/005625] batch_loss=40.783508 running_train_loss=47.471747
+[epoch 009 step 003700/005625] batch_loss=47.098343 running_train_loss=47.399002
+[epoch 009 step 003800/005625] batch_loss=54.915318 running_train_loss=47.419577
+[epoch 009 step 003900/005625] batch_loss=51.616154 running_train_loss=47.450184
+[epoch 009 step 004000/005625] batch_loss=45.882175 running_train_loss=47.465430
+[epoch 009 step 004100/005625] batch_loss=80.592064 running_train_loss=47.480378
+[epoch 009 step 004200/005625] batch_loss=36.343597 running_train_loss=47.431723
+[epoch 009 step 004300/005625] batch_loss=60.865444 running_train_loss=47.469179
+[epoch 009 step 004400/005625] batch_loss=51.396111 running_train_loss=47.485788
+[epoch 009 step 004500/005625] batch_loss=40.160614 running_train_loss=47.437861
+[epoch 009 step 004600/005625] batch_loss=42.124645 running_train_loss=47.420952
+[epoch 009 step 004700/005625] batch_loss=39.272839 running_train_loss=47.438499
+[epoch 009 step 004800/005625] batch_loss=42.385391 running_train_loss=47.346868
+[epoch 009 step 004900/005625] batch_loss=45.795235 running_train_loss=47.328988
+[epoch 009 step 005000/005625] batch_loss=37.986191 running_train_loss=47.391481
+[epoch 009 step 005100/005625] batch_loss=55.835903 running_train_loss=47.432582
+[epoch 009 step 005200/005625] batch_loss=46.653961 running_train_loss=47.407472
+[epoch 009 step 005300/005625] batch_loss=44.521873 running_train_loss=47.362240
+[epoch 009 step 005400/005625] batch_loss=44.661900 running_train_loss=47.324470
+[epoch 009 step 005500/005625] batch_loss=41.488728 running_train_loss=47.291338
+[epoch 009 step 005600/005625] batch_loss=56.041309 running_train_loss=47.433566
+Skipping validation this epoch because --val-every 2
+Epoch [009/30] train_loss=47.420629 val_loss=54.996849 best_val=54.996849 best_epoch=8 lr=1.00e-03 time=8.3 min
+
+--------------------------------------------------------------------------------
+Starting epoch 10/30 at 2026-06-16T02:53:27
+[epoch 010 step 000100/005625] batch_loss=43.846764 running_train_loss=50.559674
+[epoch 010 step 000200/005625] batch_loss=56.401119 running_train_loss=47.609450
+[epoch 010 step 000300/005625] batch_loss=40.077885 running_train_loss=47.315570
+[epoch 010 step 000400/005625] batch_loss=34.028400 running_train_loss=47.037165
+[epoch 010 step 000500/005625] batch_loss=43.527477 running_train_loss=47.993249
+[epoch 010 step 000600/005625] batch_loss=39.169128 running_train_loss=47.982325
+[epoch 010 step 000700/005625] batch_loss=49.564022 running_train_loss=47.684555
+[epoch 010 step 000800/005625] batch_loss=50.803089 running_train_loss=47.605719
+[epoch 010 step 000900/005625] batch_loss=39.784485 running_train_loss=47.486654
+[epoch 010 step 001000/005625] batch_loss=42.870476 running_train_loss=47.518699
+[epoch 010 step 001100/005625] batch_loss=35.623142 running_train_loss=47.330211
+[epoch 010 step 001200/005625] batch_loss=40.382393 running_train_loss=47.114858
+[epoch 010 step 001300/005625] batch_loss=45.336025 running_train_loss=47.127056
+[epoch 010 step 001400/005625] batch_loss=50.389812 running_train_loss=47.091073
+[epoch 010 step 001500/005625] batch_loss=46.760090 running_train_loss=47.068238
+[epoch 010 step 001600/005625] batch_loss=43.123497 running_train_loss=46.968572
+[epoch 010 step 001700/005625] batch_loss=49.478661 running_train_loss=46.893765
+[epoch 010 step 001800/005625] batch_loss=52.495865 running_train_loss=46.637125
+[epoch 010 step 001900/005625] batch_loss=47.128826 running_train_loss=46.622314
+[epoch 010 step 002000/005625] batch_loss=35.650879 running_train_loss=46.646364
+[epoch 010 step 002100/005625] batch_loss=44.563538 running_train_loss=46.603222
+[epoch 010 step 002200/005625] batch_loss=35.915359 running_train_loss=46.524932
+[epoch 010 step 002300/005625] batch_loss=46.740372 running_train_loss=46.392274
+[epoch 010 step 002400/005625] batch_loss=38.492596 running_train_loss=46.488746
+[epoch 010 step 002500/005625] batch_loss=57.898365 running_train_loss=46.377778
+[epoch 010 step 002600/005625] batch_loss=37.990280 running_train_loss=46.345806
+[epoch 010 step 002700/005625] batch_loss=39.583252 running_train_loss=46.292235
+[epoch 010 step 002800/005625] batch_loss=46.372574 running_train_loss=46.304053
+[epoch 010 step 002900/005625] batch_loss=52.975464 running_train_loss=46.297089
+[epoch 010 step 003000/005625] batch_loss=33.261959 running_train_loss=46.364662
+[epoch 010 step 003100/005625] batch_loss=47.720329 running_train_loss=46.298466
+[epoch 010 step 003200/005625] batch_loss=48.699047 running_train_loss=46.276366
+[epoch 010 step 003300/005625] batch_loss=38.764179 running_train_loss=46.290496
+[epoch 010 step 003400/005625] batch_loss=47.432285 running_train_loss=46.224333
+[epoch 010 step 003500/005625] batch_loss=33.617584 running_train_loss=46.244283
+[epoch 010 step 003600/005625] batch_loss=43.374435 running_train_loss=46.355882
+[epoch 010 step 003700/005625] batch_loss=46.318245 running_train_loss=46.288525
+[epoch 010 step 003800/005625] batch_loss=54.527031 running_train_loss=46.311997
+[epoch 010 step 003900/005625] batch_loss=51.565948 running_train_loss=46.362550
+[epoch 010 step 004000/005625] batch_loss=44.282185 running_train_loss=46.395254
+[epoch 010 step 004100/005625] batch_loss=61.366077 running_train_loss=46.400899
+[epoch 010 step 004200/005625] batch_loss=36.182564 running_train_loss=46.336269
+[epoch 010 step 004300/005625] batch_loss=51.072273 running_train_loss=46.346505
+[epoch 010 step 004400/005625] batch_loss=60.928905 running_train_loss=46.353614
+[epoch 010 step 004500/005625] batch_loss=38.233040 running_train_loss=46.307110
+[epoch 010 step 004600/005625] batch_loss=40.899323 running_train_loss=46.299435
+[epoch 010 step 004700/005625] batch_loss=39.455864 running_train_loss=46.335833
+[epoch 010 step 004800/005625] batch_loss=41.264591 running_train_loss=46.249284
+[epoch 010 step 004900/005625] batch_loss=44.817039 running_train_loss=46.223518
+[epoch 010 step 005000/005625] batch_loss=36.317768 running_train_loss=46.298180
+[epoch 010 step 005100/005625] batch_loss=54.106167 running_train_loss=46.347566
+[epoch 010 step 005200/005625] batch_loss=46.775818 running_train_loss=46.315390
+[epoch 010 step 005300/005625] batch_loss=44.896103 running_train_loss=46.271662
+[epoch 010 step 005400/005625] batch_loss=42.648586 running_train_loss=46.228806
+[epoch 010 step 005500/005625] batch_loss=40.122940 running_train_loss=46.198974
+[epoch 010 step 005600/005625] batch_loss=53.202477 running_train_loss=46.333998
+Validation starting ...
+Saved new best model: val_loss=54.099483
+Epoch [010/30] train_loss=46.331346 val_loss=54.099483 best_val=54.099483 best_epoch=10 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 11/30 at 2026-06-16T03:02:14
+[epoch 011 step 000100/005625] batch_loss=43.864563 running_train_loss=50.203848
+[epoch 011 step 000200/005625] batch_loss=58.064827 running_train_loss=47.186728
+[epoch 011 step 000300/005625] batch_loss=38.414024 running_train_loss=46.715132
+[epoch 011 step 000400/005625] batch_loss=32.271004 running_train_loss=46.249140
+[epoch 011 step 000500/005625] batch_loss=42.271412 running_train_loss=46.737812
+[epoch 011 step 000600/005625] batch_loss=38.239052 running_train_loss=46.689097
+[epoch 011 step 000700/005625] batch_loss=48.673161 running_train_loss=46.461901
+[epoch 011 step 000800/005625] batch_loss=47.199329 running_train_loss=46.275245
+[epoch 011 step 000900/005625] batch_loss=39.295639 running_train_loss=46.139406
+[epoch 011 step 001000/005625] batch_loss=41.126869 running_train_loss=46.419717
+[epoch 011 step 001100/005625] batch_loss=33.538857 running_train_loss=46.186454
+[epoch 011 step 001200/005625] batch_loss=40.104134 running_train_loss=45.986558
+[epoch 011 step 001300/005625] batch_loss=44.391487 running_train_loss=45.975164
+[epoch 011 step 001400/005625] batch_loss=50.090229 running_train_loss=46.027016
+[epoch 011 step 001500/005625] batch_loss=43.284046 running_train_loss=46.012329
+[epoch 011 step 001600/005625] batch_loss=43.023438 running_train_loss=45.934719
+[epoch 011 step 001700/005625] batch_loss=45.342442 running_train_loss=45.841628
+[epoch 011 step 001800/005625] batch_loss=51.773102 running_train_loss=45.615101
+[epoch 011 step 001900/005625] batch_loss=46.216824 running_train_loss=45.594036
+[epoch 011 step 002000/005625] batch_loss=35.126011 running_train_loss=45.664242
+[epoch 011 step 002100/005625] batch_loss=43.215439 running_train_loss=45.625931
+[epoch 011 step 002200/005625] batch_loss=35.160091 running_train_loss=45.556895
+[epoch 011 step 002300/005625] batch_loss=46.408695 running_train_loss=45.429897
+[epoch 011 step 002400/005625] batch_loss=37.354713 running_train_loss=45.503035
+[epoch 011 step 002500/005625] batch_loss=56.491360 running_train_loss=45.400786
+[epoch 011 step 002600/005625] batch_loss=36.798492 running_train_loss=45.377140
+[epoch 011 step 002700/005625] batch_loss=39.182560 running_train_loss=45.330593
+[epoch 011 step 002800/005625] batch_loss=45.261345 running_train_loss=45.345328
+[epoch 011 step 002900/005625] batch_loss=51.008839 running_train_loss=45.335917
+[epoch 011 step 003000/005625] batch_loss=32.584404 running_train_loss=45.374255
+[epoch 011 step 003100/005625] batch_loss=46.387108 running_train_loss=45.317152
+[epoch 011 step 003200/005625] batch_loss=49.114140 running_train_loss=45.302138
+[epoch 011 step 003300/005625] batch_loss=36.307514 running_train_loss=45.353264
+[epoch 011 step 003400/005625] batch_loss=45.954166 running_train_loss=45.293134
+[epoch 011 step 003500/005625] batch_loss=31.575905 running_train_loss=45.326455
+[epoch 011 step 003600/005625] batch_loss=36.014423 running_train_loss=45.412510
+[epoch 011 step 003700/005625] batch_loss=45.850582 running_train_loss=45.351523
+[epoch 011 step 003800/005625] batch_loss=53.611988 running_train_loss=45.400774
+[epoch 011 step 003900/005625] batch_loss=51.661064 running_train_loss=45.451170
+[epoch 011 step 004000/005625] batch_loss=43.779026 running_train_loss=45.496937
+[epoch 011 step 004100/005625] batch_loss=64.709618 running_train_loss=45.531482
+[epoch 011 step 004200/005625] batch_loss=35.928646 running_train_loss=45.522168
+[epoch 011 step 004300/005625] batch_loss=50.014172 running_train_loss=45.557409
+[epoch 011 step 004400/005625] batch_loss=52.165241 running_train_loss=45.556335
+[epoch 011 step 004500/005625] batch_loss=37.937241 running_train_loss=45.519454
+[epoch 011 step 004600/005625] batch_loss=40.922932 running_train_loss=45.507999
+[epoch 011 step 004700/005625] batch_loss=36.754398 running_train_loss=45.536308
+[epoch 011 step 004800/005625] batch_loss=42.691811 running_train_loss=45.460969
+[epoch 011 step 004900/005625] batch_loss=45.959057 running_train_loss=45.440491
+[epoch 011 step 005000/005625] batch_loss=35.266304 running_train_loss=45.505945
+[epoch 011 step 005100/005625] batch_loss=52.894753 running_train_loss=45.547931
+[epoch 011 step 005200/005625] batch_loss=48.956326 running_train_loss=45.531005
+[epoch 011 step 005300/005625] batch_loss=46.299301 running_train_loss=45.492955
+[epoch 011 step 005400/005625] batch_loss=41.943359 running_train_loss=45.457421
+[epoch 011 step 005500/005625] batch_loss=39.188461 running_train_loss=45.425004
+[epoch 011 step 005600/005625] batch_loss=55.909580 running_train_loss=45.573718
+Skipping validation this epoch because --val-every 2
+Epoch [011/30] train_loss=45.562818 val_loss=54.099483 best_val=54.099483 best_epoch=10 lr=1.00e-03 time=8.2 min
+
+--------------------------------------------------------------------------------
+Starting epoch 12/30 at 2026-06-16T03:10:28
+[epoch 012 step 000100/005625] batch_loss=43.496456 running_train_loss=46.774060
+[epoch 012 step 000200/005625] batch_loss=54.020840 running_train_loss=45.227213
+[epoch 012 step 000300/005625] batch_loss=39.259148 running_train_loss=45.050659
+[epoch 012 step 000400/005625] batch_loss=32.658630 running_train_loss=44.797465
+[epoch 012 step 000500/005625] batch_loss=40.852150 running_train_loss=45.709514
+[epoch 012 step 000600/005625] batch_loss=37.767654 running_train_loss=45.796523
+[epoch 012 step 000700/005625] batch_loss=48.716839 running_train_loss=45.575766
+[epoch 012 step 000800/005625] batch_loss=47.593872 running_train_loss=45.565687
+[epoch 012 step 000900/005625] batch_loss=37.917995 running_train_loss=45.552350
+[epoch 012 step 001000/005625] batch_loss=40.792896 running_train_loss=45.591983
+[epoch 012 step 001100/005625] batch_loss=33.280499 running_train_loss=45.354308
+[epoch 012 step 001200/005625] batch_loss=38.719357 running_train_loss=45.135097
+[epoch 012 step 001300/005625] batch_loss=44.006599 running_train_loss=45.161614
+[epoch 012 step 001400/005625] batch_loss=49.050335 running_train_loss=45.210481
+[epoch 012 step 001500/005625] batch_loss=45.801575 running_train_loss=45.177019
+[epoch 012 step 001600/005625] batch_loss=42.839165 running_train_loss=45.105739
+[epoch 012 step 001700/005625] batch_loss=44.248611 running_train_loss=45.030468
+[epoch 012 step 001800/005625] batch_loss=53.340714 running_train_loss=44.842123
+[epoch 012 step 001900/005625] batch_loss=44.552402 running_train_loss=44.824256
+[epoch 012 step 002000/005625] batch_loss=32.516033 running_train_loss=44.812822
+[epoch 012 step 002100/005625] batch_loss=45.193581 running_train_loss=44.793420
+[epoch 012 step 002200/005625] batch_loss=35.808327 running_train_loss=44.740168
+[epoch 012 step 002300/005625] batch_loss=45.381149 running_train_loss=44.609577
+[epoch 012 step 002400/005625] batch_loss=35.440296 running_train_loss=44.649737
+[epoch 012 step 002500/005625] batch_loss=56.695972 running_train_loss=44.558555
+[epoch 012 step 002600/005625] batch_loss=36.551338 running_train_loss=44.537627
+[epoch 012 step 002700/005625] batch_loss=40.138683 running_train_loss=44.525023
+[epoch 012 step 002800/005625] batch_loss=45.432220 running_train_loss=44.551545
+[epoch 012 step 002900/005625] batch_loss=51.918678 running_train_loss=44.569907
+[epoch 012 step 003000/005625] batch_loss=32.354187 running_train_loss=44.636937
+[epoch 012 step 003100/005625] batch_loss=47.145458 running_train_loss=44.569010
+[epoch 012 step 003200/005625] batch_loss=47.957890 running_train_loss=44.561538
+[epoch 012 step 003300/005625] batch_loss=36.061810 running_train_loss=44.580326
+[epoch 012 step 003400/005625] batch_loss=47.046261 running_train_loss=44.534956
+[epoch 012 step 003500/005625] batch_loss=31.490421 running_train_loss=44.600285
+[epoch 012 step 003600/005625] batch_loss=39.746021 running_train_loss=44.712673
+[epoch 012 step 003700/005625] batch_loss=45.757977 running_train_loss=44.652692
+[epoch 012 step 003800/005625] batch_loss=53.544010 running_train_loss=44.681011
+[epoch 012 step 003900/005625] batch_loss=49.167583 running_train_loss=44.744051
+[epoch 012 step 004000/005625] batch_loss=41.627789 running_train_loss=44.771340
+[epoch 012 step 004100/005625] batch_loss=60.047096 running_train_loss=44.789626
+[epoch 012 step 004200/005625] batch_loss=35.544147 running_train_loss=44.782287
+[epoch 012 step 004300/005625] batch_loss=53.513943 running_train_loss=44.818236
+[epoch 012 step 004400/005625] batch_loss=48.752018 running_train_loss=44.821285
+[epoch 012 step 004500/005625] batch_loss=39.015278 running_train_loss=44.789038
+[epoch 012 step 004600/005625] batch_loss=39.814831 running_train_loss=44.780627
+[epoch 012 step 004700/005625] batch_loss=34.586781 running_train_loss=44.807817
+[epoch 012 step 004800/005625] batch_loss=39.324509 running_train_loss=44.724091
+[epoch 012 step 004900/005625] batch_loss=46.518490 running_train_loss=44.709404
+[epoch 012 step 005000/005625] batch_loss=35.645695 running_train_loss=44.770675
+[epoch 012 step 005100/005625] batch_loss=52.424484 running_train_loss=44.809036
+[epoch 012 step 005200/005625] batch_loss=45.570873 running_train_loss=44.787887
+[epoch 012 step 005300/005625] batch_loss=40.389187 running_train_loss=44.744830
+[epoch 012 step 005400/005625] batch_loss=42.181538 running_train_loss=44.705449
+[epoch 012 step 005500/005625] batch_loss=38.307808 running_train_loss=44.676295
+[epoch 012 step 005600/005625] batch_loss=53.568748 running_train_loss=44.819017
+Validation starting ...
+Epoch [012/30] train_loss=44.822686 val_loss=55.511727 best_val=54.099483 best_epoch=10 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 13/30 at 2026-06-16T03:19:14
+[epoch 013 step 000100/005625] batch_loss=41.825390 running_train_loss=47.690986
+[epoch 013 step 000200/005625] batch_loss=55.654472 running_train_loss=45.304397
+[epoch 013 step 000300/005625] batch_loss=37.097103 running_train_loss=44.908086
+[epoch 013 step 000400/005625] batch_loss=32.842655 running_train_loss=44.626352
+[epoch 013 step 000500/005625] batch_loss=40.925121 running_train_loss=45.094827
+[epoch 013 step 000600/005625] batch_loss=37.408211 running_train_loss=45.119616
+[epoch 013 step 000700/005625] batch_loss=48.341244 running_train_loss=44.993883
+[epoch 013 step 000800/005625] batch_loss=46.914871 running_train_loss=44.892997
+[epoch 013 step 000900/005625] batch_loss=43.233109 running_train_loss=44.757413
+[epoch 013 step 001000/005625] batch_loss=39.773235 running_train_loss=44.888038
+[epoch 013 step 001100/005625] batch_loss=34.033699 running_train_loss=44.740677
+[epoch 013 step 001200/005625] batch_loss=38.673813 running_train_loss=44.565313
+[epoch 013 step 001300/005625] batch_loss=41.951843 running_train_loss=44.621448
+[epoch 013 step 001400/005625] batch_loss=49.037746 running_train_loss=44.680380
+[epoch 013 step 001500/005625] batch_loss=44.838829 running_train_loss=44.636123
+[epoch 013 step 001600/005625] batch_loss=42.984863 running_train_loss=44.571495
+[epoch 013 step 001700/005625] batch_loss=41.871468 running_train_loss=44.511184
+[epoch 013 step 001800/005625] batch_loss=53.022453 running_train_loss=44.283115
+[epoch 013 step 001900/005625] batch_loss=44.805630 running_train_loss=44.240229
+[epoch 013 step 002000/005625] batch_loss=31.657759 running_train_loss=44.251298
+[epoch 013 step 002100/005625] batch_loss=41.548512 running_train_loss=44.265042
+[epoch 013 step 002200/005625] batch_loss=33.876484 running_train_loss=44.179103
+[epoch 013 step 002300/005625] batch_loss=44.923313 running_train_loss=44.056578
+[epoch 013 step 002400/005625] batch_loss=36.370289 running_train_loss=44.116144
+[epoch 013 step 002500/005625] batch_loss=56.622093 running_train_loss=44.010915
+[epoch 013 step 002600/005625] batch_loss=42.344913 running_train_loss=43.961830
+[epoch 013 step 002700/005625] batch_loss=38.077686 running_train_loss=43.946970
+[epoch 013 step 002800/005625] batch_loss=43.979767 running_train_loss=43.949649
+[epoch 013 step 002900/005625] batch_loss=49.782303 running_train_loss=43.990397
+[epoch 013 step 003000/005625] batch_loss=30.980433 running_train_loss=44.039803
+[epoch 013 step 003100/005625] batch_loss=45.611412 running_train_loss=43.995676
+[epoch 013 step 003200/005625] batch_loss=47.381207 running_train_loss=43.986891
+[epoch 013 step 003300/005625] batch_loss=34.929047 running_train_loss=44.036197
+[epoch 013 step 003400/005625] batch_loss=45.852455 running_train_loss=43.965089
+[epoch 013 step 003500/005625] batch_loss=33.236355 running_train_loss=44.065660
+[epoch 013 step 003600/005625] batch_loss=38.109196 running_train_loss=44.142653
+[epoch 013 step 003700/005625] batch_loss=44.760765 running_train_loss=44.081861
+[epoch 013 step 003800/005625] batch_loss=52.278095 running_train_loss=44.118185
+[epoch 013 step 003900/005625] batch_loss=49.017025 running_train_loss=44.193384
+[epoch 013 step 004000/005625] batch_loss=41.016685 running_train_loss=44.225850
+[epoch 013 step 004100/005625] batch_loss=57.440018 running_train_loss=44.229381
+[epoch 013 step 004200/005625] batch_loss=34.407890 running_train_loss=44.177121
+[epoch 013 step 004300/005625] batch_loss=45.630463 running_train_loss=44.201752
+[epoch 013 step 004400/005625] batch_loss=52.308365 running_train_loss=44.237905
+[epoch 013 step 004500/005625] batch_loss=37.127922 running_train_loss=44.199016
+[epoch 013 step 004600/005625] batch_loss=39.855984 running_train_loss=44.182009
+[epoch 013 step 004700/005625] batch_loss=34.446976 running_train_loss=44.210185
+[epoch 013 step 004800/005625] batch_loss=39.769447 running_train_loss=44.130693
+[epoch 013 step 004900/005625] batch_loss=43.202316 running_train_loss=44.113293
+[epoch 013 step 005000/005625] batch_loss=31.965330 running_train_loss=44.160189
+[epoch 013 step 005100/005625] batch_loss=53.111069 running_train_loss=44.188171
+[epoch 013 step 005200/005625] batch_loss=40.748306 running_train_loss=44.163146
+[epoch 013 step 005300/005625] batch_loss=42.684605 running_train_loss=44.124727
+[epoch 013 step 005400/005625] batch_loss=43.827778 running_train_loss=44.087137
+[epoch 013 step 005500/005625] batch_loss=37.744225 running_train_loss=44.087007
+[epoch 013 step 005600/005625] batch_loss=52.615566 running_train_loss=44.219884
+Skipping validation this epoch because --val-every 2
+Epoch [013/30] train_loss=44.230937 val_loss=55.511727 best_val=54.099483 best_epoch=10 lr=1.00e-03 time=8.3 min
+
+--------------------------------------------------------------------------------
+Starting epoch 14/30 at 2026-06-16T03:27:31
+[epoch 014 step 000100/005625] batch_loss=41.791706 running_train_loss=47.583012
+[epoch 014 step 000200/005625] batch_loss=55.529076 running_train_loss=44.946349
+[epoch 014 step 000300/005625] batch_loss=37.482616 running_train_loss=44.566044
+[epoch 014 step 000400/005625] batch_loss=30.581051 running_train_loss=44.125991
+[epoch 014 step 000500/005625] batch_loss=40.053959 running_train_loss=44.700787
+[epoch 014 step 000600/005625] batch_loss=37.653061 running_train_loss=44.752434
+[epoch 014 step 000700/005625] batch_loss=47.925999 running_train_loss=44.610308
+[epoch 014 step 000800/005625] batch_loss=46.654026 running_train_loss=44.452327
+[epoch 014 step 000900/005625] batch_loss=42.802708 running_train_loss=44.356358
+[epoch 014 step 001000/005625] batch_loss=39.200256 running_train_loss=44.521434
+[epoch 014 step 001100/005625] batch_loss=34.213501 running_train_loss=44.340485
+[epoch 014 step 001200/005625] batch_loss=40.172588 running_train_loss=44.149627
+[epoch 014 step 001300/005625] batch_loss=42.643894 running_train_loss=44.187905
+[epoch 014 step 001400/005625] batch_loss=47.911076 running_train_loss=44.149020
+[epoch 014 step 001500/005625] batch_loss=42.376816 running_train_loss=44.068892
+[epoch 014 step 001600/005625] batch_loss=42.013294 running_train_loss=44.056183
+[epoch 014 step 001700/005625] batch_loss=39.816219 running_train_loss=43.966119
+[epoch 014 step 001800/005625] batch_loss=50.781887 running_train_loss=43.741772
+[epoch 014 step 001900/005625] batch_loss=43.562771 running_train_loss=43.704996
+[epoch 014 step 002000/005625] batch_loss=31.112429 running_train_loss=43.786063
+[epoch 014 step 002100/005625] batch_loss=41.008629 running_train_loss=43.772018
+[epoch 014 step 002200/005625] batch_loss=33.885124 running_train_loss=43.691687
+[epoch 014 step 002300/005625] batch_loss=43.859154 running_train_loss=43.566789
+[epoch 014 step 002400/005625] batch_loss=34.677486 running_train_loss=43.645314
+[epoch 014 step 002500/005625] batch_loss=55.369675 running_train_loss=43.550143
+[epoch 014 step 002600/005625] batch_loss=37.441742 running_train_loss=43.536704
+[epoch 014 step 002700/005625] batch_loss=37.520264 running_train_loss=43.505101
+[epoch 014 step 002800/005625] batch_loss=43.807350 running_train_loss=43.509743
+[epoch 014 step 002900/005625] batch_loss=49.385838 running_train_loss=43.527009
+[epoch 014 step 003000/005625] batch_loss=30.896704 running_train_loss=43.586149
+[epoch 014 step 003100/005625] batch_loss=45.879494 running_train_loss=43.530447
+[epoch 014 step 003200/005625] batch_loss=46.387074 running_train_loss=43.522709
+[epoch 014 step 003300/005625] batch_loss=34.906551 running_train_loss=43.558183
+[epoch 014 step 003400/005625] batch_loss=47.149014 running_train_loss=43.498793
+[epoch 014 step 003500/005625] batch_loss=30.716703 running_train_loss=43.526531
+[epoch 014 step 003600/005625] batch_loss=39.507328 running_train_loss=43.658190
+[epoch 014 step 003700/005625] batch_loss=44.667297 running_train_loss=43.603518
+[epoch 014 step 003800/005625] batch_loss=51.717247 running_train_loss=43.635750
+[epoch 014 step 003900/005625] batch_loss=48.976952 running_train_loss=43.691184
+[epoch 014 step 004000/005625] batch_loss=43.703972 running_train_loss=43.722122
+[epoch 014 step 004100/005625] batch_loss=57.992645 running_train_loss=43.716541
+[epoch 014 step 004200/005625] batch_loss=34.235119 running_train_loss=43.675283
+[epoch 014 step 004300/005625] batch_loss=44.840664 running_train_loss=43.698394
+[epoch 014 step 004400/005625] batch_loss=57.345650 running_train_loss=43.700592
+[epoch 014 step 004500/005625] batch_loss=34.828300 running_train_loss=43.652829
+[epoch 014 step 004600/005625] batch_loss=40.106503 running_train_loss=43.636879
+[epoch 014 step 004700/005625] batch_loss=38.915581 running_train_loss=43.672825
+[epoch 014 step 004800/005625] batch_loss=38.452896 running_train_loss=43.604950
+[epoch 014 step 004900/005625] batch_loss=42.402733 running_train_loss=43.609782
+[epoch 014 step 005000/005625] batch_loss=34.348129 running_train_loss=43.679435
+[epoch 014 step 005100/005625] batch_loss=52.404037 running_train_loss=43.727434
+[epoch 014 step 005200/005625] batch_loss=43.551609 running_train_loss=43.706598
+[epoch 014 step 005300/005625] batch_loss=39.476734 running_train_loss=43.669617
+[epoch 014 step 005400/005625] batch_loss=41.737011 running_train_loss=43.631518
+[epoch 014 step 005500/005625] batch_loss=36.108421 running_train_loss=43.612312
+[epoch 014 step 005600/005625] batch_loss=59.484791 running_train_loss=43.783364
+Validation starting ...
+Saved new best model: val_loss=48.800913
+Epoch [014/30] train_loss=43.776379 val_loss=48.800913 best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 15/30 at 2026-06-16T03:36:18
+[epoch 015 step 000100/005625] batch_loss=41.487961 running_train_loss=47.119032
+[epoch 015 step 000200/005625] batch_loss=53.365002 running_train_loss=44.430056
+[epoch 015 step 000300/005625] batch_loss=36.438095 running_train_loss=43.985942
+[epoch 015 step 000400/005625] batch_loss=29.989832 running_train_loss=43.646386
+[epoch 015 step 000500/005625] batch_loss=39.628414 running_train_loss=44.276194
+[epoch 015 step 000600/005625] batch_loss=37.612965 running_train_loss=44.208374
+[epoch 015 step 000700/005625] batch_loss=48.148144 running_train_loss=44.040915
+[epoch 015 step 000800/005625] batch_loss=47.271427 running_train_loss=43.925439
+[epoch 015 step 000900/005625] batch_loss=41.543274 running_train_loss=43.831481
+[epoch 015 step 001000/005625] batch_loss=39.379635 running_train_loss=44.013202
+[epoch 015 step 001100/005625] batch_loss=31.896463 running_train_loss=43.797488
+[epoch 015 step 001200/005625] batch_loss=39.285446 running_train_loss=43.587395
+[epoch 015 step 001300/005625] batch_loss=40.365337 running_train_loss=43.654207
+[epoch 015 step 001400/005625] batch_loss=48.487087 running_train_loss=43.756272
+[epoch 015 step 001500/005625] batch_loss=41.053146 running_train_loss=43.686072
+[epoch 015 step 001600/005625] batch_loss=39.426311 running_train_loss=43.601190
+[epoch 015 step 001700/005625] batch_loss=38.818047 running_train_loss=43.486307
+[epoch 015 step 001800/005625] batch_loss=47.706100 running_train_loss=43.294246
+[epoch 015 step 001900/005625] batch_loss=43.306095 running_train_loss=43.255326
+[epoch 015 step 002000/005625] batch_loss=31.063143 running_train_loss=43.269532
+[epoch 015 step 002100/005625] batch_loss=46.368961 running_train_loss=43.294835
+[epoch 015 step 002200/005625] batch_loss=33.895706 running_train_loss=43.358594
+[epoch 015 step 002300/005625] batch_loss=43.863930 running_train_loss=43.238942
+[epoch 015 step 002400/005625] batch_loss=35.973461 running_train_loss=43.301085
+[epoch 015 step 002500/005625] batch_loss=56.602211 running_train_loss=43.201154
+[epoch 015 step 002600/005625] batch_loss=35.223541 running_train_loss=43.155585
+[epoch 015 step 002700/005625] batch_loss=37.408863 running_train_loss=43.124398
+[epoch 015 step 002800/005625] batch_loss=45.383091 running_train_loss=43.158001
+[epoch 015 step 002900/005625] batch_loss=51.519436 running_train_loss=43.229028
+[epoch 015 step 003000/005625] batch_loss=31.198885 running_train_loss=43.282369
+[epoch 015 step 003100/005625] batch_loss=45.679909 running_train_loss=43.221627
+[epoch 015 step 003200/005625] batch_loss=46.203510 running_train_loss=43.205235
+[epoch 015 step 003300/005625] batch_loss=34.956360 running_train_loss=43.219062
+[epoch 015 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 015 step 003500/005625] batch_loss=558.069519 running_train_loss=nan
+[epoch 015 step 003600/005625] batch_loss=540.611023 running_train_loss=nan
+[epoch 015 step 003700/005625] batch_loss=733.280151 running_train_loss=nan
+[epoch 015 step 003800/005625] batch_loss=681.688721 running_train_loss=nan
+[epoch 015 step 003900/005625] batch_loss=597.744019 running_train_loss=nan
+[epoch 015 step 004000/005625] batch_loss=626.152710 running_train_loss=nan
+[epoch 015 step 004100/005625] batch_loss=766.153809 running_train_loss=nan
+[epoch 015 step 004200/005625] batch_loss=775.208923 running_train_loss=nan
+[epoch 015 step 004300/005625] batch_loss=693.324463 running_train_loss=nan
+[epoch 015 step 004400/005625] batch_loss=687.360291 running_train_loss=nan
+[epoch 015 step 004500/005625] batch_loss=502.328949 running_train_loss=nan
+[epoch 015 step 004600/005625] batch_loss=557.097290 running_train_loss=nan
+[epoch 015 step 004700/005625] batch_loss=548.117615 running_train_loss=nan
+[epoch 015 step 004800/005625] batch_loss=637.304810 running_train_loss=nan
+[epoch 015 step 004900/005625] batch_loss=530.911926 running_train_loss=nan
+[epoch 015 step 005000/005625] batch_loss=658.396851 running_train_loss=nan
+[epoch 015 step 005100/005625] batch_loss=727.522339 running_train_loss=nan
+[epoch 015 step 005200/005625] batch_loss=604.701172 running_train_loss=nan
+[epoch 015 step 005300/005625] batch_loss=686.524719 running_train_loss=nan
+[epoch 015 step 005400/005625] batch_loss=654.403442 running_train_loss=nan
+[epoch 015 step 005500/005625] batch_loss=563.485596 running_train_loss=nan
+[epoch 015 step 005600/005625] batch_loss=714.669739 running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [015/30] train_loss=nan val_loss=48.800913 best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.2 min
+
+--------------------------------------------------------------------------------
+Starting epoch 16/30 at 2026-06-16T03:44:28
+[epoch 016 step 000100/005625] batch_loss=725.618774 running_train_loss=665.912773
+[epoch 016 step 000200/005625] batch_loss=711.300964 running_train_loss=660.403856
+[epoch 016 step 000300/005625] batch_loss=659.657776 running_train_loss=660.301432
+[epoch 016 step 000400/005625] batch_loss=655.042664 running_train_loss=659.868684
+[epoch 016 step 000500/005625] batch_loss=552.281128 running_train_loss=657.809013
+[epoch 016 step 000600/005625] batch_loss=686.036621 running_train_loss=659.931580
+[epoch 016 step 000700/005625] batch_loss=581.651917 running_train_loss=658.841580
+[epoch 016 step 000800/005625] batch_loss=851.544800 running_train_loss=658.210548
+[epoch 016 step 000900/005625] batch_loss=634.135437 running_train_loss=658.157471
+[epoch 016 step 001000/005625] batch_loss=669.916931 running_train_loss=659.337636
+[epoch 016 step 001100/005625] batch_loss=633.347778 running_train_loss=660.365501
+[epoch 016 step 001200/005625] batch_loss=637.427673 running_train_loss=661.393115
+[epoch 016 step 001300/005625] batch_loss=647.690369 running_train_loss=661.710339
+[epoch 016 step 001400/005625] batch_loss=711.760803 running_train_loss=663.114551
+[epoch 016 step 001500/005625] batch_loss=724.467529 running_train_loss=662.476263
+[epoch 016 step 001600/005625] batch_loss=604.764343 running_train_loss=662.159757
+[epoch 016 step 001700/005625] batch_loss=597.497498 running_train_loss=660.974456
+[epoch 016 step 001800/005625] batch_loss=721.195007 running_train_loss=660.132738
+[epoch 016 step 001900/005625] batch_loss=728.991699 running_train_loss=659.448619
+[epoch 016 step 002000/005625] batch_loss=689.451355 running_train_loss=659.105222
+[epoch 016 step 002100/005625] batch_loss=590.534607 running_train_loss=659.335559
+[epoch 016 step 002200/005625] batch_loss=618.258240 running_train_loss=659.232365
+[epoch 016 step 002300/005625] batch_loss=561.460388 running_train_loss=659.349196
+[epoch 016 step 002400/005625] batch_loss=600.387146 running_train_loss=659.206044
+[epoch 016 step 002500/005625] batch_loss=573.653564 running_train_loss=658.861979
+[epoch 016 step 002600/005625] batch_loss=625.995544 running_train_loss=659.072930
+[epoch 016 step 002700/005625] batch_loss=596.965942 running_train_loss=659.036466
+[epoch 016 step 002800/005625] batch_loss=689.766663 running_train_loss=659.069664
+[epoch 016 step 002900/005625] batch_loss=685.887146 running_train_loss=659.029905
+[epoch 016 step 003000/005625] batch_loss=543.405884 running_train_loss=658.387059
+[epoch 016 step 003100/005625] batch_loss=639.362610 running_train_loss=658.566753
+[epoch 016 step 003200/005625] batch_loss=600.566528 running_train_loss=658.200976
+[epoch 016 step 003300/005625] batch_loss=690.345337 running_train_loss=658.013925
+[epoch 016 step 003400/005625] batch_loss=672.492004 running_train_loss=658.184317
+[epoch 016 step 003500/005625] batch_loss=559.294678 running_train_loss=658.008692
+[epoch 016 step 003600/005625] batch_loss=540.611023 running_train_loss=658.391145
+[epoch 016 step 003700/005625] batch_loss=733.280151 running_train_loss=658.349074
+[epoch 016 step 003800/005625] batch_loss=681.688721 running_train_loss=658.111315
+[epoch 016 step 003900/005625] batch_loss=597.744019 running_train_loss=658.071516
+[epoch 016 step 004000/005625] batch_loss=626.152710 running_train_loss=657.769065
+[epoch 016 step 004100/005625] batch_loss=766.153809 running_train_loss=657.794384
+[epoch 016 step 004200/005625] batch_loss=775.208923 running_train_loss=657.884683
+[epoch 016 step 004300/005625] batch_loss=693.324463 running_train_loss=658.118661
+[epoch 016 step 004400/005625] batch_loss=687.360291 running_train_loss=658.259464
+[epoch 016 step 004500/005625] batch_loss=502.328949 running_train_loss=658.465712
+[epoch 016 step 004600/005625] batch_loss=557.097290 running_train_loss=658.176294
+[epoch 016 step 004700/005625] batch_loss=548.117615 running_train_loss=658.126275
+[epoch 016 step 004800/005625] batch_loss=637.304810 running_train_loss=658.300043
+[epoch 016 step 004900/005625] batch_loss=530.911926 running_train_loss=658.175525
+[epoch 016 step 005000/005625] batch_loss=658.396851 running_train_loss=658.039413
+[epoch 016 step 005100/005625] batch_loss=727.522339 running_train_loss=657.672489
+[epoch 016 step 005200/005625] batch_loss=604.701172 running_train_loss=657.769797
+[epoch 016 step 005300/005625] batch_loss=686.524719 running_train_loss=657.900516
+[epoch 016 step 005400/005625] batch_loss=654.403442 running_train_loss=657.846681
+[epoch 016 step 005500/005625] batch_loss=563.485596 running_train_loss=657.735794
+[epoch 016 step 005600/005625] batch_loss=714.669739 running_train_loss=658.249718
+Validation starting ...
+Epoch [016/30] train_loss=658.239584 val_loss=660.428294 best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 17/30 at 2026-06-16T03:53:19
+[epoch 017 step 000100/005625] batch_loss=725.618774 running_train_loss=665.912773
+[epoch 017 step 000200/005625] batch_loss=711.300964 running_train_loss=660.403856
+[epoch 017 step 000300/005625] batch_loss=659.657776 running_train_loss=660.301432
+[epoch 017 step 000400/005625] batch_loss=655.042664 running_train_loss=659.868684
+[epoch 017 step 000500/005625] batch_loss=552.281128 running_train_loss=657.809013
+[epoch 017 step 000600/005625] batch_loss=686.036621 running_train_loss=659.931580
+[epoch 017 step 000700/005625] batch_loss=581.651917 running_train_loss=658.841580
+[epoch 017 step 000800/005625] batch_loss=851.544800 running_train_loss=658.210548
+[epoch 017 step 000900/005625] batch_loss=634.135437 running_train_loss=658.157471
+[epoch 017 step 001000/005625] batch_loss=669.916931 running_train_loss=659.337636
+[epoch 017 step 001100/005625] batch_loss=633.347778 running_train_loss=660.365501
+[epoch 017 step 001200/005625] batch_loss=637.427673 running_train_loss=661.393115
+[epoch 017 step 001300/005625] batch_loss=647.690369 running_train_loss=661.710339
+[epoch 017 step 001400/005625] batch_loss=711.760803 running_train_loss=663.114551
+[epoch 017 step 001500/005625] batch_loss=724.467529 running_train_loss=662.476263
+[epoch 017 step 001600/005625] batch_loss=604.764343 running_train_loss=662.159757
+[epoch 017 step 001700/005625] batch_loss=597.497498 running_train_loss=660.974456
+[epoch 017 step 001800/005625] batch_loss=721.195007 running_train_loss=660.132738
+[epoch 017 step 001900/005625] batch_loss=728.991699 running_train_loss=659.448619
+[epoch 017 step 002000/005625] batch_loss=689.451355 running_train_loss=659.105222
+[epoch 017 step 002100/005625] batch_loss=590.534607 running_train_loss=659.335559
+[epoch 017 step 002200/005625] batch_loss=618.258240 running_train_loss=659.232365
+[epoch 017 step 002300/005625] batch_loss=561.460388 running_train_loss=659.349196
+[epoch 017 step 002400/005625] batch_loss=600.387146 running_train_loss=659.206044
+[epoch 017 step 002500/005625] batch_loss=573.653564 running_train_loss=658.861979
+[epoch 017 step 002600/005625] batch_loss=625.995544 running_train_loss=659.072930
+[epoch 017 step 002700/005625] batch_loss=596.965942 running_train_loss=659.036466
+[epoch 017 step 002800/005625] batch_loss=689.766663 running_train_loss=659.069664
+[epoch 017 step 002900/005625] batch_loss=685.887146 running_train_loss=659.029905
+[epoch 017 step 003000/005625] batch_loss=543.405884 running_train_loss=658.387059
+[epoch 017 step 003100/005625] batch_loss=639.362610 running_train_loss=658.566753
+[epoch 017 step 003200/005625] batch_loss=600.566528 running_train_loss=658.200976
+[epoch 017 step 003300/005625] batch_loss=690.345337 running_train_loss=658.013925
+[epoch 017 step 003400/005625] batch_loss=672.492004 running_train_loss=658.184317
+[epoch 017 step 003500/005625] batch_loss=559.294678 running_train_loss=658.008692
+[epoch 017 step 003600/005625] batch_loss=540.611023 running_train_loss=658.391145
+[epoch 017 step 003700/005625] batch_loss=733.280151 running_train_loss=658.349074
+[epoch 017 step 003800/005625] batch_loss=681.688721 running_train_loss=658.111315
+[epoch 017 step 003900/005625] batch_loss=597.744019 running_train_loss=658.071516
+[epoch 017 step 004000/005625] batch_loss=626.152710 running_train_loss=657.769065
+[epoch 017 step 004100/005625] batch_loss=766.153809 running_train_loss=657.794384
+[epoch 017 step 004200/005625] batch_loss=775.208923 running_train_loss=657.884683
+[epoch 017 step 004300/005625] batch_loss=693.324463 running_train_loss=658.118661
+[epoch 017 step 004400/005625] batch_loss=687.360291 running_train_loss=658.259464
+[epoch 017 step 004500/005625] batch_loss=502.328949 running_train_loss=658.465712
+[epoch 017 step 004600/005625] batch_loss=557.097290 running_train_loss=658.176294
+[epoch 017 step 004700/005625] batch_loss=548.117615 running_train_loss=658.126275
+[epoch 017 step 004800/005625] batch_loss=637.304810 running_train_loss=658.300043
+[epoch 017 step 004900/005625] batch_loss=530.911926 running_train_loss=658.175525
+[epoch 017 step 005000/005625] batch_loss=658.396851 running_train_loss=658.039413
+[epoch 017 step 005100/005625] batch_loss=727.522339 running_train_loss=657.672489
+[epoch 017 step 005200/005625] batch_loss=604.701172 running_train_loss=657.769797
+[epoch 017 step 005300/005625] batch_loss=686.524719 running_train_loss=657.900516
+[epoch 017 step 005400/005625] batch_loss=654.403442 running_train_loss=657.846681
+[epoch 017 step 005500/005625] batch_loss=563.485596 running_train_loss=657.735794
+[epoch 017 step 005600/005625] batch_loss=714.669739 running_train_loss=658.249718
+Skipping validation this epoch because --val-every 2
+Epoch [017/30] train_loss=658.239584 val_loss=660.428294 best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.3 min
+
+--------------------------------------------------------------------------------
+Starting epoch 18/30 at 2026-06-16T04:01:37
+[epoch 018 step 000100/005625] batch_loss=725.618774 running_train_loss=665.912773
+[epoch 018 step 000200/005625] batch_loss=711.300964 running_train_loss=660.403856
+[epoch 018 step 000300/005625] batch_loss=659.657776 running_train_loss=660.301432
+[epoch 018 step 000400/005625] batch_loss=655.042664 running_train_loss=659.868684
+[epoch 018 step 000500/005625] batch_loss=552.281128 running_train_loss=657.809013
+[epoch 018 step 000600/005625] batch_loss=686.036621 running_train_loss=659.931580
+[epoch 018 step 000700/005625] batch_loss=581.651917 running_train_loss=658.841580
+[epoch 018 step 000800/005625] batch_loss=851.544800 running_train_loss=658.210548
+[epoch 018 step 000900/005625] batch_loss=634.135437 running_train_loss=658.157471
+[epoch 018 step 001000/005625] batch_loss=669.916931 running_train_loss=659.337636
+[epoch 018 step 001100/005625] batch_loss=633.347778 running_train_loss=660.365501
+[epoch 018 step 001200/005625] batch_loss=637.427673 running_train_loss=661.393115
+[epoch 018 step 001300/005625] batch_loss=647.690369 running_train_loss=661.710339
+[epoch 018 step 001400/005625] batch_loss=711.760803 running_train_loss=663.114551
+[epoch 018 step 001500/005625] batch_loss=724.467529 running_train_loss=662.476263
+[epoch 018 step 001600/005625] batch_loss=604.764343 running_train_loss=662.159757
+[epoch 018 step 001700/005625] batch_loss=597.497498 running_train_loss=660.974456
+[epoch 018 step 001800/005625] batch_loss=721.195007 running_train_loss=660.132738
+[epoch 018 step 001900/005625] batch_loss=728.991699 running_train_loss=659.448619
+[epoch 018 step 002000/005625] batch_loss=689.451355 running_train_loss=659.105222
+[epoch 018 step 002100/005625] batch_loss=590.534607 running_train_loss=659.335559
+[epoch 018 step 002200/005625] batch_loss=618.258240 running_train_loss=659.232365
+[epoch 018 step 002300/005625] batch_loss=561.460388 running_train_loss=659.349196
+[epoch 018 step 002400/005625] batch_loss=600.387146 running_train_loss=659.206044
+[epoch 018 step 002500/005625] batch_loss=573.653564 running_train_loss=658.861979
+[epoch 018 step 002600/005625] batch_loss=625.995544 running_train_loss=659.072930
+[epoch 018 step 002700/005625] batch_loss=596.965942 running_train_loss=659.036466
+[epoch 018 step 002800/005625] batch_loss=689.766663 running_train_loss=659.069664
+[epoch 018 step 002900/005625] batch_loss=685.887146 running_train_loss=659.029905
+[epoch 018 step 003000/005625] batch_loss=543.405884 running_train_loss=658.387059
+[epoch 018 step 003100/005625] batch_loss=639.362610 running_train_loss=658.566753
+[epoch 018 step 003200/005625] batch_loss=600.566528 running_train_loss=658.200976
+[epoch 018 step 003300/005625] batch_loss=690.345337 running_train_loss=658.013925
+[epoch 018 step 003400/005625] batch_loss=672.492004 running_train_loss=658.184317
+[epoch 018 step 003500/005625] batch_loss=559.294678 running_train_loss=658.008692
+[epoch 018 step 003600/005625] batch_loss=540.611023 running_train_loss=658.391145
+[epoch 018 step 003700/005625] batch_loss=733.280151 running_train_loss=658.349074
+[epoch 018 step 003800/005625] batch_loss=681.688721 running_train_loss=658.111315
+[epoch 018 step 003900/005625] batch_loss=597.744019 running_train_loss=658.071516
+[epoch 018 step 004000/005625] batch_loss=626.152710 running_train_loss=657.769065
+[epoch 018 step 004100/005625] batch_loss=766.153809 running_train_loss=657.794384
+[epoch 018 step 004200/005625] batch_loss=775.208923 running_train_loss=657.884683
+[epoch 018 step 004300/005625] batch_loss=693.324463 running_train_loss=658.118661
+[epoch 018 step 004400/005625] batch_loss=687.360291 running_train_loss=658.259464
+[epoch 018 step 004500/005625] batch_loss=502.328949 running_train_loss=658.465712
+[epoch 018 step 004600/005625] batch_loss=557.097290 running_train_loss=658.176294
+[epoch 018 step 004700/005625] batch_loss=548.117615 running_train_loss=658.126275
+[epoch 018 step 004800/005625] batch_loss=637.304810 running_train_loss=658.300043
+[epoch 018 step 004900/005625] batch_loss=530.911926 running_train_loss=658.175525
+[epoch 018 step 005000/005625] batch_loss=658.396851 running_train_loss=658.039413
+[epoch 018 step 005100/005625] batch_loss=727.522339 running_train_loss=657.672489
+[epoch 018 step 005200/005625] batch_loss=604.701172 running_train_loss=657.769797
+[epoch 018 step 005300/005625] batch_loss=686.524719 running_train_loss=657.900516
+[epoch 018 step 005400/005625] batch_loss=654.403442 running_train_loss=657.846681
+[epoch 018 step 005500/005625] batch_loss=563.485596 running_train_loss=657.735794
+[epoch 018 step 005600/005625] batch_loss=714.669739 running_train_loss=658.249718
+Validation starting ...
+Epoch [018/30] train_loss=658.239584 val_loss=660.428294 best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.7 min
+
+--------------------------------------------------------------------------------
+Starting epoch 19/30 at 2026-06-16T04:10:21
+[epoch 019 step 000100/005625] batch_loss=725.618774 running_train_loss=665.912773
+[epoch 019 step 000200/005625] batch_loss=711.300964 running_train_loss=660.403856
+[epoch 019 step 000300/005625] batch_loss=659.657776 running_train_loss=660.301432
+[epoch 019 step 000400/005625] batch_loss=655.042664 running_train_loss=659.868684
+[epoch 019 step 000500/005625] batch_loss=552.281128 running_train_loss=657.809013
+[epoch 019 step 000600/005625] batch_loss=686.036621 running_train_loss=659.931580
+[epoch 019 step 000700/005625] batch_loss=581.651917 running_train_loss=658.841580
+[epoch 019 step 000800/005625] batch_loss=851.544800 running_train_loss=658.210548
+[epoch 019 step 000900/005625] batch_loss=634.135437 running_train_loss=658.157471
+[epoch 019 step 001000/005625] batch_loss=669.916931 running_train_loss=659.337636
+[epoch 019 step 001100/005625] batch_loss=633.347778 running_train_loss=660.365501
+[epoch 019 step 001200/005625] batch_loss=637.427673 running_train_loss=661.393115
+[epoch 019 step 001300/005625] batch_loss=647.690369 running_train_loss=661.710339
+[epoch 019 step 001400/005625] batch_loss=711.760803 running_train_loss=663.114551
+[epoch 019 step 001500/005625] batch_loss=724.467529 running_train_loss=662.476263
+[epoch 019 step 001600/005625] batch_loss=604.764343 running_train_loss=662.159757
+[epoch 019 step 001700/005625] batch_loss=597.497498 running_train_loss=660.974456
+[epoch 019 step 001800/005625] batch_loss=721.195007 running_train_loss=660.132738
+[epoch 019 step 001900/005625] batch_loss=728.991699 running_train_loss=659.448619
+[epoch 019 step 002000/005625] batch_loss=689.451355 running_train_loss=659.105222
+[epoch 019 step 002100/005625] batch_loss=590.534607 running_train_loss=659.335559
+[epoch 019 step 002200/005625] batch_loss=618.258240 running_train_loss=659.232365
+[epoch 019 step 002300/005625] batch_loss=561.460388 running_train_loss=659.349196
+[epoch 019 step 002400/005625] batch_loss=600.387146 running_train_loss=659.206044
+[epoch 019 step 002500/005625] batch_loss=573.653564 running_train_loss=658.861979
+[epoch 019 step 002600/005625] batch_loss=625.995544 running_train_loss=659.072930
+[epoch 019 step 002700/005625] batch_loss=596.965942 running_train_loss=659.036466
+[epoch 019 step 002800/005625] batch_loss=689.766663 running_train_loss=659.069664
+[epoch 019 step 002900/005625] batch_loss=685.887146 running_train_loss=659.029905
+[epoch 019 step 003000/005625] batch_loss=1301.762085 running_train_loss=666.801128
+[epoch 019 step 003100/005625] batch_loss=4419.283691 running_train_loss=696.121750
+[epoch 019 step 003200/005625] batch_loss=9888.665039 running_train_loss=995.320545
+[epoch 019 step 003300/005625] batch_loss=9568.200195 running_train_loss=1250.199181
+[epoch 019 step 003400/005625] batch_loss=9350.345703 running_train_loss=1490.443529
+[epoch 019 step 003500/005625] batch_loss=9250.842773 running_train_loss=1717.801274
+[epoch 019 step 003600/005625] batch_loss=9155.776367 running_train_loss=1934.654528
+[epoch 019 step 003700/005625] batch_loss=9333.207031 running_train_loss=2139.277293
+[epoch 019 step 003800/005625] batch_loss=9100.261719 running_train_loss=2331.155953
+[epoch 019 step 003900/005625] batch_loss=9327.772461 running_train_loss=2516.039353
+[epoch 019 step 004000/005625] batch_loss=9487.424805 running_train_loss=2687.236533
+[epoch 019 step 004100/005625] batch_loss=10116.915039 running_train_loss=2853.760215
+[epoch 019 step 004200/005625] batch_loss=10053.542969 running_train_loss=3013.196499
+[epoch 019 step 004300/005625] batch_loss=9369.425781 running_train_loss=3163.654586
+[epoch 019 step 004400/005625] batch_loss=9484.150391 running_train_loss=3309.629013
+[epoch 019 step 004500/005625] batch_loss=8946.542969 running_train_loss=3449.827689
+[epoch 019 step 004600/005625] batch_loss=9434.379883 running_train_loss=3583.377825
+[epoch 019 step 004700/005625] batch_loss=9480.945312 running_train_loss=3711.874573
+[epoch 019 step 004800/005625] batch_loss=9403.382812 running_train_loss=3836.842387
+[epoch 019 step 004900/005625] batch_loss=9131.853516 running_train_loss=3955.401823
+[epoch 019 step 005000/005625] batch_loss=12128.399414 running_train_loss=nan
+[epoch 019 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 019 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 019 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 019 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 019 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 019 step 005600/005625] batch_loss=nan running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [019/30] train_loss=nan val_loss=660.428294 best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.1 min
+
+--------------------------------------------------------------------------------
+Starting epoch 20/30 at 2026-06-16T04:18:30
+[epoch 020 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 020 step 005600/005625] batch_loss=nan running_train_loss=nan
+Validation starting ...
+Epoch [020/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 21/30 at 2026-06-16T04:27:17
+[epoch 021 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 021 step 005600/005625] batch_loss=nan running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [021/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.1 min
+
+--------------------------------------------------------------------------------
+Starting epoch 22/30 at 2026-06-16T04:35:25
+[epoch 022 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 022 step 005600/005625] batch_loss=nan running_train_loss=nan
+Validation starting ...
+Epoch [022/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.7 min
+
+--------------------------------------------------------------------------------
+Starting epoch 23/30 at 2026-06-16T04:44:08
+[epoch 023 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 023 step 005600/005625] batch_loss=nan running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [023/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.1 min
+
+--------------------------------------------------------------------------------
+Starting epoch 24/30 at 2026-06-16T04:52:14
+[epoch 024 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 024 step 005600/005625] batch_loss=nan running_train_loss=nan
+Validation starting ...
+Epoch [024/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.7 min
+
+--------------------------------------------------------------------------------
+Starting epoch 25/30 at 2026-06-16T05:00:58
+[epoch 025 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 025 step 005600/005625] batch_loss=nan running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [025/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.2 min
+
+--------------------------------------------------------------------------------
+Starting epoch 26/30 at 2026-06-16T05:09:10
+[epoch 026 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 026 step 005600/005625] batch_loss=nan running_train_loss=nan
+Validation starting ...
+Epoch [026/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 27/30 at 2026-06-16T05:17:57
+[epoch 027 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 027 step 005600/005625] batch_loss=nan running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [027/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=1.00e-03 time=8.1 min
+
+--------------------------------------------------------------------------------
+Starting epoch 28/30 at 2026-06-16T05:26:06
+[epoch 028 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 028 step 005600/005625] batch_loss=nan running_train_loss=nan
+Validation starting ...
+Epoch [028/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=5.00e-04 time=8.8 min
+
+--------------------------------------------------------------------------------
+Starting epoch 29/30 at 2026-06-16T05:34:54
+[epoch 029 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 029 step 005600/005625] batch_loss=nan running_train_loss=nan
+Skipping validation this epoch because --val-every 2
+Epoch [029/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=5.00e-04 time=8.1 min
+
+--------------------------------------------------------------------------------
+Starting epoch 30/30 at 2026-06-16T05:42:59
+[epoch 030 step 000100/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000200/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000300/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000400/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000500/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000600/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000700/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000800/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 000900/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001000/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001100/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001200/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001300/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001400/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001500/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001600/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001700/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001800/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 001900/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002000/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002100/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002200/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002300/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002400/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002500/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002600/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002700/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002800/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 002900/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003000/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003100/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003200/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003300/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003400/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003500/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003600/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003700/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003800/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 003900/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004000/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004100/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004200/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004300/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004400/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004500/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004600/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004700/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004800/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 004900/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005000/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005100/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005200/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005300/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005400/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005500/005625] batch_loss=nan running_train_loss=nan
+[epoch 030 step 005600/005625] batch_loss=nan running_train_loss=nan
+Validation starting ...
+Epoch [030/30] train_loss=nan val_loss=nan best_val=48.800913 best_epoch=14 lr=5.00e-04 time=8.7 min
+
+Done.
+Best val loss: 48.800913 at epoch 14

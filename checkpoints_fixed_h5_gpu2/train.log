@@ -1,0 +1,109 @@
+================================================================================
+Started: 2026-06-15T22:43:23
+Command args: {'train_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5'), 'val_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5'), 'save_dir': PosixPath('checkpoints_fixed_h5_gpu2'), 'use_static': False, 'fill_target_nan': '0.0', 'batch_size': 16, 'epochs': 100, 'lr': 0.001, 'weight_decay': 0.0, 'num_workers': 0, 'seed': 42, 'loss': 'mse', 'early_stop_patience': 15, 'scheduler_patience': 8, 'scheduler_factor': 0.5, 'min_lr': 1e-06, 'base_filters': [8, 16, 32, 64], 'use_batchnorm': False, 'final_activation': 'identity', 'amp': True, 'grad_clip': None, 'resume': None, 'save_every_epoch': False, 'log_every': 100}
+================================================================================
+Using device: cuda
+GPU: NVIDIA Graphics Device
+CUDA memory allocated at start: 0.000 GB
+
+Inspecting H5 files ...
+Train H5: {'path': '/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5', 'n': 360000, 'x_gmi_shape': (360000, 78, 40, 40), 'y_shape': (360000, 13, 40, 40), 'has_static': False, 'x_static_shape': None, 'attrs': {'lat_max': '70.0', 'lat_min': '-70.0', 'max_permanent_invalid_fraction': '0.3', 'min_target_valid_fraction': '0.7', 'num_patches_actual': '360000', 'num_patches_target': '360000', 'patch_size': '40', 'seed': '42', 'stride': '20', 'use_static': 'False'}}
+Val H5  : {'path': '/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5', 'n': 50000, 'x_gmi_shape': (50000, 78, 40, 40), 'y_shape': (50000, 13, 40, 40), 'has_static': False, 'x_static_shape': None, 'attrs': {'min_valid_fraction': '0.7', 'num_patches_actual': '50000', 'num_patches_target': '50000', 'patch_size': '40', 'sampling': 'balanced random stride-aligned sampling from original validation days', 'seed': '999', 'stride': '20', 'use_static': 'False'}}
+
+Loading datasets ...
+Building dataloaders ...
+
+Building model ...
+Train patches : 360,000
+Val patches   : 50,000
+In channels   : 78
+Out channels  : 13
+Patch size    : 40
+Base filters  : (8, 16, 32, 64)
+Parameters    : 491,325
+AMP enabled   : True
+Loss function : mse
+
+--------------------------------------------------------------------------------
+Starting epoch 1/100 at 2026-06-15T22:43:25
+================================================================================
+Started: 2026-06-15T22:44:50
+Command args: {'train_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5'), 'val_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5'), 'save_dir': PosixPath('checkpoints_fixed_h5_gpu2'), 'use_static': False, 'fill_target_nan': '0.0', 'batch_size': 16, 'epochs': 100, 'lr': 0.001, 'weight_decay': 0.0, 'num_workers': 2, 'seed': 42, 'loss': 'mse', 'early_stop_patience': 15, 'scheduler_patience': 8, 'scheduler_factor': 0.5, 'min_lr': 1e-06, 'base_filters': [8, 16, 32, 64], 'use_batchnorm': False, 'final_activation': 'identity', 'amp': True, 'grad_clip': None, 'resume': None, 'save_every_epoch': False, 'log_every': 100}
+================================================================================
+Using device: cuda
+GPU: NVIDIA Graphics Device
+CUDA memory allocated at start: 0.000 GB
+
+Inspecting H5 files ...
+Train H5: {'path': '/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5', 'n': 360000, 'x_gmi_shape': (360000, 78, 40, 40), 'y_shape': (360000, 13, 40, 40), 'has_static': False, 'x_static_shape': None, 'attrs': {'lat_max': '70.0', 'lat_min': '-70.0', 'max_permanent_invalid_fraction': '0.3', 'min_target_valid_fraction': '0.7', 'num_patches_actual': '360000', 'num_patches_target': '360000', 'patch_size': '40', 'seed': '42', 'stride': '20', 'use_static': 'False'}}
+Val H5  : {'path': '/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5', 'n': 50000, 'x_gmi_shape': (50000, 78, 40, 40), 'y_shape': (50000, 13, 40, 40), 'has_static': False, 'x_static_shape': None, 'attrs': {'min_valid_fraction': '0.7', 'num_patches_actual': '50000', 'num_patches_target': '50000', 'patch_size': '40', 'sampling': 'balanced random stride-aligned sampling from original validation days', 'seed': '999', 'stride': '20', 'use_static': 'False'}}
+
+Loading datasets ...
+Building dataloaders ...
+
+Building model ...
+Train patches : 360,000
+Val patches   : 50,000
+In channels   : 78
+Out channels  : 13
+Patch size    : 40
+Base filters  : (8, 16, 32, 64)
+Parameters    : 491,325
+AMP enabled   : True
+Loss function : mse
+
+--------------------------------------------------------------------------------
+Starting epoch 1/100 at 2026-06-15T22:44:52
+================================================================================
+Started: 2026-06-15T22:46:34
+Command args: {'train_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5'), 'val_h5': PosixPath('/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5'), 'save_dir': PosixPath('checkpoints_fixed_h5_gpu2'), 'use_static': False, 'fill_target_nan': '0.0', 'batch_size': 16, 'epochs': 100, 'lr': 0.001, 'weight_decay': 0.0, 'num_workers': 2, 'seed': 42, 'loss': 'mse', 'early_stop_patience': 15, 'scheduler_patience': 8, 'scheduler_factor': 0.5, 'min_lr': 1e-06, 'base_filters': [8, 16, 32, 64], 'use_batchnorm': False, 'final_activation': 'identity', 'amp': True, 'grad_clip': None, 'resume': None, 'save_every_epoch': False, 'log_every': 100}
+================================================================================
+Using device: cuda
+GPU: NVIDIA Graphics Device
+CUDA memory allocated at start: 0.000 GB
+
+Inspecting H5 files ...
+Train H5: {'path': '/lustre/home/mariyam/GMI_1C-R/fixed_train/train_fixed_360k.h5', 'n': 360000, 'x_gmi_shape': (360000, 78, 40, 40), 'y_shape': (360000, 13, 40, 40), 'has_static': False, 'x_static_shape': None, 'attrs': {'lat_max': '70.0', 'lat_min': '-70.0', 'max_permanent_invalid_fraction': '0.3', 'min_target_valid_fraction': '0.7', 'num_patches_actual': '360000', 'num_patches_target': '360000', 'patch_size': '40', 'seed': '42', 'stride': '20', 'use_static': 'False'}}
+Val H5  : {'path': '/lustre/home/mariyam/GMI_1C-R/fixed_val/val_fixed_50k.h5', 'n': 50000, 'x_gmi_shape': (50000, 78, 40, 40), 'y_shape': (50000, 13, 40, 40), 'has_static': False, 'x_static_shape': None, 'attrs': {'min_valid_fraction': '0.7', 'num_patches_actual': '50000', 'num_patches_target': '50000', 'patch_size': '40', 'sampling': 'balanced random stride-aligned sampling from original validation days', 'seed': '999', 'stride': '20', 'use_static': 'False'}}
+
+Loading datasets ...
+Building dataloaders ...
+
+Building model ...
+Train patches : 360,000
+Val patches   : 50,000
+In channels   : 78
+Out channels  : 13
+Patch size    : 40
+Base filters  : (8, 16, 32, 64)
+Parameters    : 491,325
+AMP enabled   : True
+Loss function : mse
+
+--------------------------------------------------------------------------------
+Starting epoch 1/100 at 2026-06-15T22:46:35
+[epoch 001 step 000100/022500] batch_loss=5658.702148 running_train_loss=30289.872524
+[epoch 001 step 000200/022500] batch_loss=1253.319580 running_train_loss=16083.584267
+[epoch 001 step 000300/022500] batch_loss=1224.785522 running_train_loss=11108.561695
+[epoch 001 step 000400/022500] batch_loss=1001.174438 running_train_loss=8603.170660
+[epoch 001 step 000500/022500] batch_loss=821.396912 running_train_loss=7102.779520
+[epoch 001 step 000600/022500] batch_loss=860.999634 running_train_loss=6089.067616
+[epoch 001 step 000700/022500] batch_loss=836.811035 running_train_loss=5363.248099
+[epoch 001 step 000800/022500] batch_loss=901.700195 running_train_loss=4808.187006
+[epoch 001 step 000900/022500] batch_loss=305.280090 running_train_loss=4322.088516
+[epoch 001 step 001000/022500] batch_loss=176.957550 running_train_loss=3913.198552
+[epoch 001 step 001100/022500] batch_loss=167.867294 running_train_loss=3575.400150
+[epoch 001 step 001200/022500] batch_loss=152.419083 running_train_loss=3293.098014
+[epoch 001 step 001300/022500] batch_loss=151.245850 running_train_loss=3054.517410
+[epoch 001 step 001400/022500] batch_loss=466.309723 running_train_loss=2850.092392
+[epoch 001 step 001500/022500] batch_loss=262.682892 running_train_loss=2672.543446
+[epoch 001 step 001600/022500] batch_loss=136.402084 running_train_loss=2518.033988
+[epoch 001 step 001700/022500] batch_loss=192.472656 running_train_loss=2381.736862
+[epoch 001 step 001800/022500] batch_loss=294.359222 running_train_loss=2260.201865
+[epoch 001 step 001900/022500] batch_loss=164.505569 running_train_loss=2150.787256
+[epoch 001 step 002000/022500] batch_loss=224.886826 running_train_loss=2052.676572
+[epoch 001 step 002100/022500] batch_loss=204.540283 running_train_loss=1964.205390
+[epoch 001 step 002200/022500] batch_loss=206.349426 running_train_loss=1883.472421
+[epoch 001 step 002300/022500] batch_loss=292.923187 running_train_loss=1810.321274
+[epoch 001 step 002400/022500] batch_loss=165.738022 running_train_loss=1742.309543
+[epoch 001 step 002500/022500] batch_loss=234.816132 running_train_loss=1679.902409
