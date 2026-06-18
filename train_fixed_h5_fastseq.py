@@ -254,6 +254,12 @@ def train_one_epoch(model, batches, optimizer, loss_fn, epoch, scaler=None, grad
             with torch.amp.autocast("cuda"):
                 pred = model(x)
                 loss = loss_fn(pred, y)
+                if not torch.isfinite(loss):
+                    print(f"Non-finite loss at epoch {epoch}, step {step}: {loss.item()}", flush=True)
+                    print(f"x finite: {torch.isfinite(x).all().item()}", flush=True)
+                    print(f"y finite: {torch.isfinite(y).all().item()}", flush=True)
+                    print(f"pred finite: {torch.isfinite(pred).all().item()}", flush=True)
+                    raise RuntimeError("Stopping because loss became NaN/Inf")
             scaler.scale(loss).backward()
             if grad_clip is not None:
                 scaler.unscale_(optimizer)
@@ -263,6 +269,12 @@ def train_one_epoch(model, batches, optimizer, loss_fn, epoch, scaler=None, grad
         else:
             pred = model(x)
             loss = loss_fn(pred, y)
+            if not torch.isfinite(loss):
+                print(f"Non-finite loss at epoch {epoch}, step {step}: {loss.item()}", flush=True)
+                print(f"x finite: {torch.isfinite(x).all().item()}", flush=True)
+                print(f"y finite: {torch.isfinite(y).all().item()}", flush=True)
+                print(f"pred finite: {torch.isfinite(pred).all().item()}", flush=True)
+                raise RuntimeError("Stopping because loss became NaN/Inf")
             loss.backward()
             if grad_clip is not None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
@@ -424,10 +436,13 @@ def main():
 
         if args.resume is not None:
             print(f"\nResuming from {args.resume}")
-            ckpt = torch.load(args.resume, map_location=device)
+            ckpt = torch.load(args.resume, map_location=device, weights_only=False)
             model.load_state_dict(ckpt["model_state_dict"])
             if "optimizer_state_dict" in ckpt:
                 optimizer.load_state_dict(ckpt["optimizer_state_dict"])
+            for param_group in optimizer.param_groups:
+                param_group["lr"] = args.lr
+            print(f"Reset optimizer LR to {args.lr}")
             start_epoch = int(ckpt.get("epoch", 0)) + 1
             best_val_loss = float(ckpt.get("best_val_loss", float("inf")))
             best_epoch = int(ckpt.get("best_epoch", ckpt.get("epoch", 0)))
