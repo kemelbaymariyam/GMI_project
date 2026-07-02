@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+
+# Environment files
+.env
+.env.*
+
+# Large datasets
+data/
+*.h5
+*.hdf5
+*.npz
+*.npy
+
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+checkpoints*/
+runs/
+
+# Generated inference outputs
+infer_outputs/
+inference_outputs/
+outputs/
+artifacts/
+
+# Training logs and temporary files
+*.log
+history.jsonl
+*.tmp
+*.temp
